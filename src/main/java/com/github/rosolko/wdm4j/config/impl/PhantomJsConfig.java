@@ -2,6 +2,7 @@ package com.github.rosolko.wdm4j.config.impl;
 
 import com.github.rosolko.wdm4j.config.CommonConfig;
 import com.github.rosolko.wdm4j.enums.Architecture;
+import com.github.rosolko.wdm4j.enums.Extension;
 import com.github.rosolko.wdm4j.enums.Os;
 
 import static java.util.Objects.requireNonNull;
@@ -48,5 +49,14 @@ public class PhantomJsConfig implements CommonConfig {
     @Override
     public String getLatestVersion() {
         return "2.1.1";
+    }
+
+    @Override
+    public Extension getArchiveExtension(final Os os) {
+        requireNonNull(os, "os must not be null");
+
+        return os == Os.linux
+            ? Extension.TAR_BZ2
+            : Extension.ZIP;
     }
 }
