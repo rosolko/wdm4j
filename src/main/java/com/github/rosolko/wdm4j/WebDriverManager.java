@@ -43,7 +43,7 @@ public final class WebDriverManager {
         return instance;
     }
 
-    public void manage(final CommonConfig config) {
+    public void setup(final CommonConfig config) {
         final Os os = Os.detect();
         final Architecture architecture = Architecture.detect();
         final String pattern = config.getUrlPattern();

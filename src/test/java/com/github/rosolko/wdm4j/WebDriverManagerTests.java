@@ -14,10 +14,13 @@ import com.github.rosolko.wdm4j.config.impl.PhantomJsConfig;
 import com.github.rosolko.wdm4j.enums.Architecture;
 import com.github.rosolko.wdm4j.enums.Os;
 import com.github.rosolko.wdm4j.service.FileService;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+
+import static org.apache.logging.log4j.LogManager.getLogger;
 
 /**
  * @author Aliaksandr Rasolka
@@ -25,6 +28,8 @@ import org.junit.jupiter.params.provider.MethodSource;
  */
 @DisplayName("WebDriver manager tests")
 class WebDriverManagerTests {
+    private static final Logger log = getLogger();
+
     private static Stream<CommonConfig> createConfigs() {
         return Stream.of(
             new ChromeConfig(),
@@ -39,7 +44,9 @@ class WebDriverManagerTests {
     @ParameterizedTest(name = "{arguments}")
     @MethodSource("createConfigs")
     @DisplayName("Get and put binary to system variables")
-    void ableToSetSystemVariable(final CommonConfig config) {
+    void ableToSetUpBinary(final CommonConfig config) {
+        log.info("Try to setup WebDriver binary based on '{}' config", config.getClass().getSimpleName());
+
         final FileService fileService = new FileService();
         final String version = config.getLatestVersion();
         final Os os = Os.detect();
@@ -49,7 +56,7 @@ class WebDriverManagerTests {
         final Path binaryPath = fileService.getBinaryPath(config.getBrowserName(), version, platform, binaryName);
         final String variable = config.getBinaryVariable();
 
-        WebDriverManager.getInstance().manage(config);
+        WebDriverManager.getInstance().setup(config);
 
         final String systemVariable = System.getProperty(variable);
         Assertions.assertTrue(Files.exists(binaryPath));
