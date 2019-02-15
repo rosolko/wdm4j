@@ -1,0 +1,50 @@
+checkstyle {
+    toolVersion = "8.17"
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+pmd {
+    toolVersion = "6.11.0"
+}
+
+tasks.withType(Pmd) {
+    ruleSets = []
+    ruleSetConfig = resources.text.fromFile("config/pmd/ruleSet.xml")
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+jacoco {
+    toolVersion = '0.8.3'
+}
+
+tasks.withType(JacocoReport) {
+    reports {
+        xml.enabled = false
+        csv.enabled = false
+    }
+}
+
+tasks.withType(JacocoCoverageVerification) {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.9
+            }
+        }
+    }
+}
+
+sonarqube {
+    properties {
+        property("sonar.projectName", "WebDriver manager for java")
+    }
+}

@@ -1,0 +1,76 @@
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
+
+apply plugin: "maven-publish"
+apply plugin: "signing"
+
+tasks.register("sourcesJar", Jar) {
+    from sourceSets.main.allJava
+    classifier "sources"
+}
+
+tasks.register("javadocJar", Jar) {
+    from javadoc
+    classifier "javadoc"
+}
+
+def buildTimeAndDate = OffsetDateTime.now()
+
+ext {
+    buildDate = DateTimeFormatter.ISO_LOCAL_DATE.format(buildTimeAndDate)
+    buildTime = DateTimeFormatter.ofPattern("HH:mm:ss.SSSZ").format(buildTimeAndDate)
+}
+
+jar {
+    manifest {
+        attributes(
+            "Automatic-Module-Name": "wdm4j",
+            "Built-By": "Gradle",
+            "Build-Date": buildDate,
+            "Build-Time": buildTime,
+            "Created-By": "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})".toString(),
+            "Implementation-Title": project.name,
+            "Implementation-Version": project.version,
+            "Implementation-Vendor": "rosolko"
+        )
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            pom {
+                name = "wdm4j"
+                description = "WebDriver binary manager for java"
+                url = "https://github.com/rosolko/wdm4j"
+                licenses {
+                    license {
+                        name = "MIT"
+                        url = "https://github.com/rosolko/wdm4j/blob/master/LICENSE"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "rosolko"
+                        name = "Aliaksandr Rasolka"
+                        email = "rosolko@gmail.com"
+                    }
+                }
+                scm {
+                    connection = "scm:git:https://github.com/rosolko/wdm4j.git"
+                    developerConnection = "scm:git:https://github.com/rosolko/wdm4j.git"
+                    url = "https://github.com/rosolko/wdm4j"
+                }
+            }
+        }
+    }
+}
+
+signing {
+    if (project.hasProperty("signing.keyId")) {
+        sign publishing.publications
+    }
+}

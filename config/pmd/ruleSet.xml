@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="WebDriver manager for java ruleset"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+    <description>WebDriver manager for java ruleset</description>
+
+    <rule ref="category/java/bestpractices.xml">
+        <exclude name="ArrayIsStoredDirectly"/>
+        <exclude name="GuardLogStatement"/>
+        <exclude name="JUnit4SuitesShouldUseSuiteAnnotation"/>
+        <exclude name="JUnit4TestShouldUseAfterAnnotation"/>
+        <exclude name="JUnit4TestShouldUseBeforeAnnotation"/>
+        <exclude name="JUnit4TestShouldUseTestAnnotation"/>
+        <exclude name="JUnitAssertionsShouldIncludeMessage"/>
+        <exclude name="JUnitTestContainsTooManyAsserts"/>
+        <exclude name="JUnitTestsShouldIncludeAssert"/>
+        <exclude name="JUnitUseExpected"/>
+        <exclude name="UseAssertEqualsInsteadOfAssertTrue"/>
+        <exclude name="UseAssertNullInsteadOfAssertTrue"/>
+        <exclude name="UseAssertSameInsteadOfAssertTrue"/>
+        <exclude name="UseAssertTrueInsteadOfAssertEquals"/>
+    </rule>
+
+    <rule ref="category/java/codestyle.xml">
+        <exclude name="AtLeastOneConstructor"/>
+        <exclude name="AvoidFinalLocalVariable"/>
+        <exclude name="CallSuperInConstructor"/>
+        <exclude name="CommentDefaultAccessModifier"/>
+        <exclude name="ConfusingTernary"/>
+        <exclude name="DefaultPackage"/>
+        <exclude name="ForLoopsMustUseBraces"/>
+        <exclude name="IfElseStmtsMustUseBraces"/>
+        <exclude name="IfStmtsMustUseBraces"/>
+        <exclude name="LocalHomeNamingConvention"/>
+        <exclude name="LocalInterfaceSessionNamingConvention"/>
+        <exclude name="MDBAndSessionBeanNamingConvention"/>
+        <exclude name="OnlyOneReturn"/>
+        <exclude name="RemoteInterfaceNamingConvention"/>
+        <exclude name="RemoteSessionInterfaceNamingConvention"/>
+        <exclude name="ShortClassName"/>
+        <exclude name="WhileLoopsMustUseBraces"/>
+    </rule>
+    <rule ref="category/java/codestyle.xml/FieldNamingConventions">
+        <properties>
+            <property name="constantPattern" value="log?|[A-Z][A-Z_0-9]*"/>
+        </properties>
+    </rule>
+
+    <rule ref="category/java/design.xml">
+        <exclude name="LawOfDemeter"/>
+        <exclude name="LoosePackageCoupling"/>
+        <exclude name="ModifiedCyclomaticComplexity"/>
+        <exclude name="NcssConstructorCount"/>
+        <exclude name="NcssMethodCount"/>
+        <exclude name="NcssTypeCount"/>
+        <exclude name="SimplifyBooleanAssertion"/>
+        <exclude name="StdCyclomaticComplexity"/>
+    </rule>
+
+    <rule ref="category/java/documentation.xml">
+        <exclude name="CommentRequired"/>
+        <exclude name="CommentSize"/>
+    </rule>
+
+    <rule ref="category/java/errorprone.xml">
+        <exclude name="BeanMembersShouldSerialize"/>
+        <exclude name="DoNotCallSystemExit"/>
+        <exclude name="DoNotHardCodeSDCard"/>
+        <exclude name="InvalidSlf4jMessageFormat"/>
+        <exclude name="JUnitSpelling"/>
+        <exclude name="JUnitStaticSuite"/>
+        <exclude name="MoreThanOneLogger"/>
+        <exclude name="SimpleDateFormatNeedsLocale"/>
+        <exclude name="StaticEJBFieldShouldBeFinal"/>
+        <exclude name="UnnecessaryBooleanAssertion"/>
+        <exclude name="UseProperClassLoader"/>
+    </rule>
+
+    <rule ref="category/java/multithreading.xml">
+        <exclude name="DoNotUseThreads"/>
+    </rule>
+
+    <rule ref="category/java/performance.xml"/>
+</ruleset>
