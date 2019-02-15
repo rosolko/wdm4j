@@ -13,4 +13,4 @@ cache:
     - $HOME/.gradle/wrapper/
 
 script:
-  - ./gradlew build --no-daemon --no-build-cache --console=plain
+  - ./gradlew test --no-daemon --no-build-cache --console=plain

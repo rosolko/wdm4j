@@ -8,6 +8,7 @@ import com.github.rosolko.wdm4j.config.CommonConfig;
 import com.github.rosolko.wdm4j.config.impl.ChromeConfig;
 import com.github.rosolko.wdm4j.config.impl.EdgeConfig;
 import com.github.rosolko.wdm4j.config.impl.FirefoxConfig;
+import com.github.rosolko.wdm4j.config.impl.InternetExplorerConfig;
 import com.github.rosolko.wdm4j.config.impl.OperaConfig;
 import com.github.rosolko.wdm4j.config.impl.PhantomJsConfig;
 import com.github.rosolko.wdm4j.enums.Architecture;
@@ -15,7 +16,6 @@ import com.github.rosolko.wdm4j.enums.Os;
 import com.github.rosolko.wdm4j.service.FileService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -28,10 +28,11 @@ class WebDriverManagerTests {
     private static Stream<CommonConfig> createConfigs() {
         return Stream.of(
             new ChromeConfig(),
+            new EdgeConfig(),
             new FirefoxConfig(),
+            new InternetExplorerConfig(),
             new OperaConfig(),
-            new PhantomJsConfig(),
-            new EdgeConfig()
+            new PhantomJsConfig()
         );
     }
 

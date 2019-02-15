@@ -4,8 +4,6 @@ import com.github.rosolko.wdm4j.config.CommonConfig;
 import com.github.rosolko.wdm4j.enums.Extension;
 import com.github.rosolko.wdm4j.enums.Os;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * @author Aliaksandr Rasolka
  * @since 1.0.0
@@ -18,8 +16,6 @@ public class EdgeConfig implements CommonConfig {
 
     @Override
     public String getBinaryName(final Os os) {
-        requireNonNull(os, "os must not be null");
-
         return "MicrosoftWebDriver.exe";
     }
 
@@ -40,8 +36,6 @@ public class EdgeConfig implements CommonConfig {
 
     @Override
     public Extension getArchiveExtension(final Os os) {
-        requireNonNull(os, "os must not be null");
-
         return Extension.EXE;
     }
 }
