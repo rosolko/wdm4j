@@ -124,6 +124,7 @@ public class WebDriverManager {
                         final URL url = urlService.buildUrl(pattern, version, platform, extension);
                         final String archiveName = urlService.getFileNameFromUrl(url);
                         final Path archiveTempPath = fileService.getArchiveTempPath(archiveName);
+                        archiveService.remove(archiveTempPath);
                         final Path downloadedArchive = archiveService.download(url, archiveTempPath);
                         unarchivedBinaryPath = archiveService.extract(downloadedArchive, binaryName, binaryPath, extension);
                         archiveService.remove(downloadedArchive);

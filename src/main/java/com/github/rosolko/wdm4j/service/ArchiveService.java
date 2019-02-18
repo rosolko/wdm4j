@@ -2,7 +2,6 @@ package com.github.rosolko.wdm4j.service;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,7 +16,6 @@ import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
 import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
-import org.apache.commons.compress.utils.IOUtils;
 
 import static java.util.Objects.requireNonNull;
 
@@ -118,9 +116,7 @@ public class ArchiveService {
         while ((entry = archiveInputStream.getNextEntry()) != null) {
             final String name = Paths.get(entry.getName()).getFileName().toString();
             if (name.equals(binaryName) && !entry.isDirectory()) {
-                try (OutputStream o = Files.newOutputStream(binaryPath)) {
-                    IOUtils.copy(archiveInputStream, o);
-                }
+                Files.copy(archiveInputStream, binaryPath, StandardCopyOption.REPLACE_EXISTING);
             }
         }
     }
