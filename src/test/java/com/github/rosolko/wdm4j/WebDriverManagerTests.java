@@ -5,11 +5,8 @@ import com.github.rosolko.wdm4j.config.impl.*;
 import com.github.rosolko.wdm4j.enums.Architecture;
 import com.github.rosolko.wdm4j.enums.Os;
 import com.github.rosolko.wdm4j.service.FileService;
-import com.github.rosolko.wdm4j.service.impl.FileServiceImpl;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import com.github.rosolko.wdm4j.service.impl.DefaultFileService;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -22,10 +19,12 @@ import java.util.stream.Stream;
  * @since 1.0.0
  */
 @DisplayName("WebDriver manager tests")
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class WebDriverManagerTests {
     private Os os;
     private Architecture architecture;
     private FileService fileService;
+    private WebDriverManager webDriverManager;
 
     private static Stream<CommonConfig> createConfigs() {
         return Stream.of(
@@ -39,11 +38,12 @@ class WebDriverManagerTests {
     }
 
     @DisplayName("Detect os and architecture, initialize file service")
-    @BeforeEach
+    @BeforeAll
     void setUp() {
         os = Os.detect();
         architecture = Architecture.detect();
-        fileService = new FileServiceImpl();
+        fileService = new DefaultFileService();
+        webDriverManager = new WebDriverManager();
     }
 
     @ParameterizedTest
@@ -56,7 +56,7 @@ class WebDriverManagerTests {
         final Path binaryPath = fileService.getBinaryPath(config.getBrowserName(), version, platform, binaryName);
         final String variable = config.getBinaryVariable();
 
-        new WebDriverManager().setup(config);
+        webDriverManager.setup(config);
 
         final String systemVariable = System.getProperty(variable);
         Assertions.assertTrue(Files.exists(binaryPath));
@@ -75,7 +75,7 @@ class WebDriverManagerTests {
         final Path binaryPath = fileService.getBinaryPath(config.getBrowserName(), version, platform, binaryName);
         final String variable = config.getBinaryVariable();
 
-        new WebDriverManager().setup(config, version);
+        webDriverManager.setup(config, version);
 
         final String systemVariable = System.getProperty(variable);
         Assertions.assertTrue(Files.exists(binaryPath));

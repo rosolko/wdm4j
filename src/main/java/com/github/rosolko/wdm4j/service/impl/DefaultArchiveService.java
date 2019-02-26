@@ -26,7 +26,7 @@ import static java.util.Objects.requireNonNull;
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
-public class ArchiveServiceImpl implements ArchiveService {
+public class DefaultArchiveService implements ArchiveService {
     @Override
     public Path download(final URL url, final Path archivePath) {
         requireNonNull(url, "url must not be null");

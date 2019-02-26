@@ -11,7 +11,7 @@ import static java.util.Objects.requireNonNull;
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
-public class VariableServiceImpl implements VariableService {
+public class DefaultVariableService implements VariableService {
     @Override
     public void setSystemProperty(final String binaryProperty, final Path binaryPath) {
         requireNonNull(binaryProperty, "binary property must not be null");

@@ -18,7 +18,7 @@ import static java.util.Objects.requireNonNull;
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
-public class PermissionServiceImpl implements PermissionService {
+public class DefaultPermissionService implements PermissionService {
     @Override
     public void makeExecutable(final Os os, final Path binaryPath) {
         requireNonNull(os, "os must not be null");

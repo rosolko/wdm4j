@@ -15,7 +15,7 @@ import static java.util.Objects.requireNonNull;
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
-public class UrlServiceImpl implements UrlService {
+public class DefaultUrlService implements UrlService {
     @Override
     public URL buildUrl(final String pattern, final String version, final String platform, final Extension extension) {
         requireNonNull(pattern, "pattern must not be null");

@@ -14,7 +14,7 @@ import static java.util.Objects.requireNonNull;
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
-public class FileServiceImpl implements FileService {
+public class DefaultFileService implements FileService {
     @Override
     public Path getArchiveTempPath(final String archiveName) {
         requireNonNull(archiveName, "archive name must not be null");

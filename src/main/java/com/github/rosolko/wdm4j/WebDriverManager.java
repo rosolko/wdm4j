@@ -20,38 +20,33 @@ import java.util.concurrent.ArrayBlockingQueue;
 public final class WebDriverManager {
     private final Queue<Path> queue = new ArrayBlockingQueue<>(Runtime.getRuntime().availableProcessors());
 
-    private final UrlService urlService;
-    private final FileService fileService;
     private final ArchiveService archiveService;
+    private final FileService fileService;
     private final PermissionService permissionService;
+    private final UrlService urlService;
     private final VariableService variableService;
 
     public WebDriverManager() {
-        this(new UrlServiceImpl(), new FileServiceImpl(), new ArchiveServiceImpl(),
-            new PermissionServiceImpl(), new VariableServiceImpl());
+        this(new DefaultArchiveService(), new DefaultFileService(), new DefaultPermissionService(),
+            new DefaultUrlService(), new DefaultVariableService());
     }
 
-    public WebDriverManager(final UrlService urlService, final FileService fileService,
-                            final ArchiveService archiveService, final PermissionService permissionService,
+    public WebDriverManager(final ArchiveService archiveService, final FileService fileService,
+                            final PermissionService permissionService, final UrlService urlService,
                             final VariableService variableService) {
-        this.urlService = urlService;
-        this.fileService = fileService;
         this.archiveService = archiveService;
+        this.fileService = fileService;
         this.permissionService = permissionService;
+        this.urlService = urlService;
         this.variableService = variableService;
     }
 
     public void setup(final CommonConfig config) {
-        final String version = config.getLatestVersion();
-        final Os os = Os.detect();
-        final Architecture architecture = Architecture.detect();
-        setup(config, version, os, architecture);
+        setup(config, config.getLatestVersion(), Os.detect(), Architecture.detect());
     }
 
     public void setup(final CommonConfig config, final String version) {
-        final Os os = Os.detect();
-        final Architecture architecture = Architecture.detect();
-        setup(config, version, os, architecture);
+        setup(config, version, Os.detect(), Architecture.detect());
     }
 
     private void setup(final CommonConfig config, final String version, final Os os, final Architecture architecture) {
