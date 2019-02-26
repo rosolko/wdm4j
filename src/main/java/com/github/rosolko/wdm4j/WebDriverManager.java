@@ -15,6 +15,7 @@ import com.github.rosolko.wdm4j.service.FileService;
 import com.github.rosolko.wdm4j.service.PermissionService;
 import com.github.rosolko.wdm4j.service.UrlService;
 import com.github.rosolko.wdm4j.service.VariableService;
+import com.github.rosolko.wdm4j.util.CachedVersion;
 import org.apache.logging.log4j.Logger;
 
 import static java.util.Objects.isNull;
@@ -98,7 +99,13 @@ public class WebDriverManager {
         @Override
         public void setup() {
             if (isNull(this.version)) {
-                this.version = config.getLatestVersion();
+                final CachedVersion cachedVersion = new CachedVersion(config.getBrowserName());
+                if (cachedVersion.isValid()) {
+                    this.version = cachedVersion.getFromCache();
+                } else {
+                    this.version = config.getLatestVersion();
+                    cachedVersion.updateCache(this.version);
+                }
             }
             if (isNull(this.os)) {
                 this.os = Os.detect();

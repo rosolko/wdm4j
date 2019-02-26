@@ -27,7 +27,10 @@ public class FirefoxConfig implements CommonConfig {
     public String getBinaryName(final Os os) {
         requireNonNull(os, "os must not be null");
 
-        return String.format("geckodriver%s", getBinaryExtension(os).getValue());
+        final String baseName = "geckodriver";
+        return os == Os.windows
+            ? String.format("%s.%s", baseName, Extension.EXE.getValue())
+            : baseName;
     }
 
     @Override

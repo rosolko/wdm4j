@@ -21,7 +21,10 @@ public class PhantomJsConfig implements CommonConfig {
     public String getBinaryName(final Os os) {
         requireNonNull(os, "os must not be null");
 
-        return String.format("phantomjs%s", getBinaryExtension(os).getValue());
+        final String baseName = "phantomjs";
+        return os == Os.windows
+            ? String.format("%s.%s", baseName, Extension.EXE.getValue())
+            : baseName;
     }
 
     @Override
