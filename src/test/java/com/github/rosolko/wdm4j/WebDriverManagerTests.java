@@ -1,18 +1,27 @@
 package com.github.rosolko.wdm4j;
 
 import com.github.rosolko.wdm4j.config.CommonConfig;
-import com.github.rosolko.wdm4j.config.impl.*;
+import com.github.rosolko.wdm4j.config.impl.ChromeConfig;
+import com.github.rosolko.wdm4j.config.impl.EdgeConfig;
+import com.github.rosolko.wdm4j.config.impl.FirefoxConfig;
+import com.github.rosolko.wdm4j.config.impl.InternetExplorerConfig;
+import com.github.rosolko.wdm4j.config.impl.OperaConfig;
+import com.github.rosolko.wdm4j.config.impl.PhantomJsConfig;
 import com.github.rosolko.wdm4j.enums.Architecture;
 import com.github.rosolko.wdm4j.enums.Os;
 import com.github.rosolko.wdm4j.service.FileService;
 import com.github.rosolko.wdm4j.service.impl.DefaultFileService;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.stream.Stream;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Aliaksandr Rasolka
@@ -59,9 +68,9 @@ class WebDriverManagerTests {
         webDriverManager.setup(config);
 
         final String systemVariable = System.getProperty(variable);
-        Assertions.assertTrue(Files.exists(binaryPath));
-        Assertions.assertNotNull(systemVariable);
-        Assertions.assertEquals(systemVariable, binaryPath.toString());
+        assertThat(binaryPath).exists();
+        assertThat(systemVariable).isNotEmpty();
+        assertThat(systemVariable).isEqualTo(binaryPath.toString());
     }
 
     @Test
@@ -78,8 +87,8 @@ class WebDriverManagerTests {
         webDriverManager.setup(config, version);
 
         final String systemVariable = System.getProperty(variable);
-        Assertions.assertTrue(Files.exists(binaryPath));
-        Assertions.assertNotNull(systemVariable);
-        Assertions.assertEquals(systemVariable, binaryPath.toString());
+        assertThat(binaryPath).exists();
+        assertThat(systemVariable).isNotEmpty();
+        assertThat(systemVariable).isEqualTo(binaryPath.toString());
     }
 }

@@ -4,8 +4,16 @@ import com.github.rosolko.wdm4j.config.CommonConfig;
 import com.github.rosolko.wdm4j.enums.Architecture;
 import com.github.rosolko.wdm4j.enums.Extension;
 import com.github.rosolko.wdm4j.enums.Os;
-import com.github.rosolko.wdm4j.service.*;
-import com.github.rosolko.wdm4j.service.impl.*;
+import com.github.rosolko.wdm4j.service.ArchiveService;
+import com.github.rosolko.wdm4j.service.FileService;
+import com.github.rosolko.wdm4j.service.PermissionService;
+import com.github.rosolko.wdm4j.service.UrlService;
+import com.github.rosolko.wdm4j.service.VariableService;
+import com.github.rosolko.wdm4j.service.impl.DefaultArchiveService;
+import com.github.rosolko.wdm4j.service.impl.DefaultFileService;
+import com.github.rosolko.wdm4j.service.impl.DefaultPermissionService;
+import com.github.rosolko.wdm4j.service.impl.DefaultUrlService;
+import com.github.rosolko.wdm4j.service.impl.DefaultVariableService;
 
 import java.net.URL;
 import java.nio.file.Files;
