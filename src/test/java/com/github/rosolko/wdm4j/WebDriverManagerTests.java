@@ -62,7 +62,7 @@ class WebDriverManagerTests {
         final Path binaryPath = fileService.getBinaryPath(config.getBrowserName(), version, platform, binaryName);
         final String variable = config.getBinaryVariable();
 
-        WebDriverManager.getInstance().with(config).setup();
+        WebDriverManager.getInstance().config(config).setup();
 
         final String systemVariable = System.getProperty(variable);
         Assertions.assertTrue(Files.exists(binaryPath));
@@ -81,7 +81,7 @@ class WebDriverManagerTests {
         final String variable = firefoxConfig.getBinaryVariable();
 
         WebDriverManager.getInstance()
-            .with(firefoxConfig)
+            .config(firefoxConfig)
             .version(version)
             .setup();
 
@@ -103,7 +103,7 @@ class WebDriverManagerTests {
         final String variable = firefoxConfig.getBinaryVariable();
 
         WebDriverManager.getInstance()
-            .with(firefoxConfig)
+            .config(firefoxConfig)
             .os(os)
             .setup();
 
@@ -125,7 +125,7 @@ class WebDriverManagerTests {
         final String variable = firefoxConfig.getBinaryVariable();
 
         WebDriverManager.getInstance()
-            .with(firefoxConfig)
+            .config(firefoxConfig)
             .architecture(architecture)
             .setup();
 
@@ -148,7 +148,7 @@ class WebDriverManagerTests {
         final String variable = firefoxConfig.getBinaryVariable();
 
         WebDriverManager.getInstance()
-            .with(firefoxConfig)
+            .config(firefoxConfig)
             .os(os)
             .architecture(architecture)
             .setup();
@@ -171,7 +171,7 @@ class WebDriverManagerTests {
         final String variable = firefoxConfig.getBinaryVariable();
 
         WebDriverManager.getInstance()
-            .with(firefoxConfig)
+            .config(firefoxConfig)
             .version(version)
             .architecture(architecture)
             .setup();
@@ -194,7 +194,7 @@ class WebDriverManagerTests {
         final String variable = firefoxConfig.getBinaryVariable();
 
         WebDriverManager.getInstance()
-            .with(firefoxConfig)
+            .config(firefoxConfig)
             .version(version)
             .os(os)
             .setup();
@@ -218,7 +218,7 @@ class WebDriverManagerTests {
         final String variable = firefoxConfig.getBinaryVariable();
 
         WebDriverManager.getInstance()
-            .with(firefoxConfig)
+            .config(firefoxConfig)
             .version(version)
             .os(os)
             .architecture(architecture)

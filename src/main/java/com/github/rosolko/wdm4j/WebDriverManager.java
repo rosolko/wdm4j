@@ -34,7 +34,7 @@ public class WebDriverManager {
     }
 
     public interface ConfigStep {
-        SetupStep with(CommonConfig config);
+        SetupStep config(CommonConfig config);
     }
 
     public interface SetupStep {
@@ -69,7 +69,7 @@ public class WebDriverManager {
         }
 
         @Override
-        public SetupStep with(final CommonConfig config) {
+        public SetupStep config(final CommonConfig config) {
             requireNonNull(config, "config must not be null");
 
             log.info("Set '{}' config", config);
@@ -114,7 +114,7 @@ public class WebDriverManager {
                 this.architecture = Architecture.detect();
             }
 
-            log.info("Setup binary with '{}' version, '{}' os and '{}' architecture", version, os, architecture);
+            log.info("Setup binary config '{}' version, '{}' os and '{}' architecture", version, os, architecture);
 
             final String pattern = config.getUrlPattern();
             final String platform = config.getPlatform(os, architecture);
