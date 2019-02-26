@@ -1,5 +1,5 @@
 checkstyle {
-    toolVersion = "8.17"
+    toolVersion = "8.18"
 }
 
 tasks.withType(Checkstyle) {
@@ -10,7 +10,7 @@ tasks.withType(Checkstyle) {
 }
 
 pmd {
-    toolVersion = "6.11.0"
+    toolVersion = "6.12.0"
 }
 
 tasks.withType(Pmd) {

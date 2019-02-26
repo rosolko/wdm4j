@@ -1,12 +1,12 @@
 package com.github.rosolko.wdm4j.util;
 
+import kr.motd.maven.os.Detector;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
-
-import kr.motd.maven.os.Detector;
-import org.apache.logging.log4j.Logger;
 
 import static org.apache.logging.log4j.LogManager.getLogger;
 

@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  * @since 1.0.0
  */
 public enum Extension {
-    EXE(".exe"),
+    EXE("exe"),
     EMPTY(""),
     ZIP("zip"),
     TAR_GZ("tar.gz"),

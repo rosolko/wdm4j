@@ -15,14 +15,6 @@ public interface CommonConfig {
 
     String getBinaryName(Os os);
 
-    default Extension getBinaryExtension(final Os os) {
-        requireNonNull(os, "os must not be null");
-
-        return os == Os.windows
-            ? Extension.EXE
-            : Extension.EMPTY;
-    }
-
     String getLatestVersion();
 
     default String getPlatform(Os os, Architecture architecture) {
