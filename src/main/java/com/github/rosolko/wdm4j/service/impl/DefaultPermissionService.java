@@ -1,15 +1,15 @@
 package com.github.rosolko.wdm4j.service.impl;
 
-import com.github.rosolko.wdm4j.enums.Extension;
-import com.github.rosolko.wdm4j.enums.Os;
-import com.github.rosolko.wdm4j.exception.WebDriverManagerException;
-import com.github.rosolko.wdm4j.service.PermissionService;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.Set;
+
+import com.github.rosolko.wdm4j.enums.Extension;
+import com.github.rosolko.wdm4j.enums.Os;
+import com.github.rosolko.wdm4j.exception.WebDriverManagerException;
+import com.github.rosolko.wdm4j.service.PermissionService;
 
 import static java.util.Objects.requireNonNull;
 

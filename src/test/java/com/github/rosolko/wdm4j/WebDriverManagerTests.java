@@ -1,5 +1,8 @@
 package com.github.rosolko.wdm4j;
 
+import java.nio.file.Path;
+import java.util.stream.Stream;
+
 import com.github.rosolko.wdm4j.config.CommonConfig;
 import com.github.rosolko.wdm4j.config.impl.ChromeConfig;
 import com.github.rosolko.wdm4j.config.impl.EdgeConfig;
@@ -17,9 +20,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.nio.file.Path;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

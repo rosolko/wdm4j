@@ -1,8 +1,8 @@
 package com.github.rosolko.wdm4j.service.impl;
 
-import com.github.rosolko.wdm4j.service.VariableService;
-
 import java.nio.file.Path;
+
+import com.github.rosolko.wdm4j.service.VariableService;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;

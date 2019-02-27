@@ -1,13 +1,13 @@
 package com.github.rosolko.wdm4j.service.impl;
 
-import com.github.rosolko.wdm4j.enums.Extension;
-import com.github.rosolko.wdm4j.exception.WebDriverManagerException;
-import com.github.rosolko.wdm4j.service.UrlService;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import com.github.rosolko.wdm4j.enums.Extension;
+import com.github.rosolko.wdm4j.exception.WebDriverManagerException;
+import com.github.rosolko.wdm4j.service.UrlService;
 
 import static java.util.Objects.requireNonNull;
 

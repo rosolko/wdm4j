@@ -1,8 +1,8 @@
 package com.github.rosolko.wdm4j.service;
 
-import com.github.rosolko.wdm4j.enums.Os;
-
 import java.nio.file.Path;
+
+import com.github.rosolko.wdm4j.enums.Os;
 
 /**
  * @author Aliaksandr Rasolka

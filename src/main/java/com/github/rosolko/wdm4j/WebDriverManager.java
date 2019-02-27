@@ -1,5 +1,11 @@
 package com.github.rosolko.wdm4j;
 
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
+
 import com.github.rosolko.wdm4j.config.CommonConfig;
 import com.github.rosolko.wdm4j.enums.Architecture;
 import com.github.rosolko.wdm4j.enums.Extension;
@@ -14,12 +20,6 @@ import com.github.rosolko.wdm4j.service.impl.DefaultFileService;
 import com.github.rosolko.wdm4j.service.impl.DefaultPermissionService;
 import com.github.rosolko.wdm4j.service.impl.DefaultUrlService;
 import com.github.rosolko.wdm4j.service.impl.DefaultVariableService;
-
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * @author Aliaksandr Rasolka

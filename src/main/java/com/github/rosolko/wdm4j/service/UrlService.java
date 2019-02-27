@@ -1,8 +1,8 @@
 package com.github.rosolko.wdm4j.service;
 
-import com.github.rosolko.wdm4j.enums.Extension;
-
 import java.net.URL;
+
+import com.github.rosolko.wdm4j.enums.Extension;
 
 /**
  * @author Aliaksandr Rasolka
