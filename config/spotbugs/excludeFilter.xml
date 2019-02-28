@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FindBugsFilter>
     <Match>
-        <Class name="FooTests"/>
-        <Bug pattern="NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR"/>
+        <Class name="com.github.rosolko.wdm4j.service.impl.DefaultArchiveService"/>
+        <Method name="extractEntry"/>
+        <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE"/>
+    </Match>
+    <Match>
+        <Class name="com.github.rosolko.wdm4j.service.impl.DefaultFileService"/>
+        <Method name="createTargetDirectory"/>
+        <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE"/>
+    </Match>
+    <Match>
+        <Class name="com.github.rosolko.wdm4j.service.impl.DefaultUrlService"/>
+        <Method name="getFileNameFromUrl"/>
+        <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE"/>
+    </Match>
+    <Match>
+        <Class name="com.github.rosolko.wdm4j.service.impl.DefaultArchiveServiceTest"/>
+        <Method name="ableToExtractEntryFromArchive"/>
+        <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE"/>
+    </Match>
+    <Match>
+        <Class name="com.github.rosolko.wdm4j.service.impl.DefaultFileServiceTest"/>
+        <Method name="ableToGetArchiveTempPath"/>
+        <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE"/>
     </Match>
 </FindBugsFilter>
