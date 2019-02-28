@@ -14,18 +14,26 @@ import org.jsoup.nodes.Element;
 import static java.util.Objects.requireNonNull;
 
 /**
+ * Chrome configuration.
+ *
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
 public class ChromeConfig implements CommonConfig {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getBrowserName() {
         return "chrome";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getBinaryName(final Os os) {
-        requireNonNull(os, "os must not be null");
+        requireNonNull(os);
 
         final String name = "chromedriver";
         return os == Os.windows
@@ -33,20 +41,29 @@ public class ChromeConfig implements CommonConfig {
             : name;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getUrlPattern() {
         return "https://chromedriver.storage.googleapis.com/{version}/chromedriver_{platform}.{extension}";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getBinaryVariable() {
         return "webdriver.chrome.driver";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {
-        requireNonNull(os, "os must not be null");
-        requireNonNull(architecture, "architecture must not be null");
+        requireNonNull(os);
+        requireNonNull(architecture);
 
         final Architecture outArchitecture = os == Os.windows
             ? Architecture.x86_32
@@ -54,6 +71,9 @@ public class ChromeConfig implements CommonConfig {
         return String.format("%s%s", os.getValue(), outArchitecture.getValue());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getLatestVersion() {
         final Document document;

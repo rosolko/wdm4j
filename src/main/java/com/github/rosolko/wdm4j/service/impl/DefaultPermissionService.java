@@ -14,14 +14,19 @@ import com.github.rosolko.wdm4j.service.PermissionService;
 import static java.util.Objects.requireNonNull;
 
 /**
+ * Default permission service implementation.
+ *
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
 public class DefaultPermissionService implements PermissionService {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void makeExecutable(final Os os, final Path binaryPath) {
-        requireNonNull(os, "os must not be null");
-        requireNonNull(binaryPath, "binary path must not be null");
+        requireNonNull(os);
+        requireNonNull(binaryPath);
 
         if (os == Os.windows || binaryPath.endsWith(Extension.EXE.getValue())) {
             return;

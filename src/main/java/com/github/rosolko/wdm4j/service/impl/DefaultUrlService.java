@@ -12,16 +12,21 @@ import com.github.rosolko.wdm4j.service.UrlService;
 import static java.util.Objects.requireNonNull;
 
 /**
+ * Default url service implementation.
+ *
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
 public class DefaultUrlService implements UrlService {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public URL buildUrl(final String pattern, final String version, final String platform, final Extension extension) {
-        requireNonNull(pattern, "pattern must not be null");
-        requireNonNull(version, "version must not be null");
-        requireNonNull(platform, "platform must not be null");
-        requireNonNull(extension, "extension must not be null");
+        requireNonNull(pattern);
+        requireNonNull(version);
+        requireNonNull(platform);
+        requireNonNull(extension);
 
         final String candidate = pattern
             .replaceAll("(?i)(\\{version})", version)
@@ -35,9 +40,12 @@ public class DefaultUrlService implements UrlService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getFileNameFromUrl(final URL url) {
-        requireNonNull(url, "url must not be null");
+        requireNonNull(url);
 
         final Path path = Paths.get(url.getPath());
         return path.getFileName().toString();

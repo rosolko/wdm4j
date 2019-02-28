@@ -46,6 +46,16 @@
             <property name="constantPattern" value="log?|[A-Z][A-Z_0-9]*"/>
         </properties>
     </rule>
+    <rule ref="category/java/codestyle.xml/ShortVariable">
+        <properties>
+            <property name="minimum" value="2"/>
+        </properties>
+    </rule>
+    <rule ref="category/java/codestyle.xml/LongVariable">
+        <properties>
+            <property name="minimum" value="26"/>
+        </properties>
+    </rule>
 
     <rule ref="category/java/design.xml">
         <exclude name="LawOfDemeter"/>
@@ -65,6 +75,7 @@
 
     <rule ref="category/java/errorprone.xml">
         <exclude name="BeanMembersShouldSerialize"/>
+        <exclude name="DataflowAnomalyAnalysis"/>
         <exclude name="DoNotCallSystemExit"/>
         <exclude name="DoNotHardCodeSDCard"/>
         <exclude name="InvalidSlf4jMessageFormat"/>

@@ -28,7 +28,7 @@ class DefaultVariableServiceTest {
 
     @Test
     @DisplayName("Set system property by name and path")
-    void setSystemProperty(@TempDir Path tempPath) {
+    void setSystemProperty(@TempDir final Path tempPath) {
         final String tempBinaryProperty = "temp.prop";
         final Path tempBinaryPath = tempPath.resolve("binary.exe");
 

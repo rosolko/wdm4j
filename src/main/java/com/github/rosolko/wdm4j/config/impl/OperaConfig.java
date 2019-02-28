@@ -14,18 +14,26 @@ import org.jsoup.nodes.Element;
 import static java.util.Objects.requireNonNull;
 
 /**
+ * Opera configuration.
+ *
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
 public class OperaConfig implements CommonConfig {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getBrowserName() {
         return "opera";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getBinaryName(final Os os) {
-        requireNonNull(os, "os must not be null");
+        requireNonNull(os);
 
         final String name = "operadriver";
         return os == Os.windows
@@ -33,20 +41,29 @@ public class OperaConfig implements CommonConfig {
             : name;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getUrlPattern() {
         return "https://github.com/operasoftware/operachromiumdriver/releases/download/v.{version}/operadriver_{platform}.{extension}";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getBinaryVariable() {
         return "webdriver.opera.driver";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {
-        requireNonNull(os, "os must not be null");
-        requireNonNull(architecture, "architecture must not be null");
+        requireNonNull(os);
+        requireNonNull(architecture);
 
         final Architecture outArchitecture = os == Os.windows
             ? Architecture.x86_32
@@ -54,6 +71,9 @@ public class OperaConfig implements CommonConfig {
         return String.format("%s%s", os.getValue(), outArchitecture.getValue());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getLatestVersion() {
         final Document document;

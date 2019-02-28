@@ -14,18 +14,26 @@ import org.jsoup.nodes.Element;
 import static java.util.Objects.requireNonNull;
 
 /**
+ * Firefox configuration.
+ *
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
 public class FirefoxConfig implements CommonConfig {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getBrowserName() {
         return "firefox";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getBinaryName(final Os os) {
-        requireNonNull(os, "os must not be null");
+        requireNonNull(os);
 
         final String name = "geckodriver";
         return os == Os.windows
@@ -33,26 +41,38 @@ public class FirefoxConfig implements CommonConfig {
             : name;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getUrlPattern() {
         return "https://github.com/mozilla/geckodriver/releases/download/{version}/geckodriver-{version}-{platform}.{extension}";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getBinaryVariable() {
         return "webdriver.gecko.driver";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {
-        requireNonNull(os, "os must not be null");
-        requireNonNull(architecture, "architecture must not be null");
+        requireNonNull(os);
+        requireNonNull(architecture);
 
         return os == Os.osx
             ? "macos"
             : os.getValue() + architecture.getValue();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getLatestVersion() {
         final Document document;
@@ -65,9 +85,12 @@ public class FirefoxConfig implements CommonConfig {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Extension getArchiveExtension(final Os os) {
-        requireNonNull(os, "os must not be null");
+        requireNonNull(os);
 
         return os == Os.windows
             ? Extension.ZIP

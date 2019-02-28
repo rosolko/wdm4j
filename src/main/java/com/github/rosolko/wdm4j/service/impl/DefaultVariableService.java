@@ -8,14 +8,19 @@ import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 /**
+ * Default variable service implementation.
+ *
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
 public class DefaultVariableService implements VariableService {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setSystemProperty(final String binaryProperty, final Path binaryPath) {
-        requireNonNull(binaryProperty, "binary property must not be null");
-        requireNonNull(binaryPath, "binary path must not be null");
+        requireNonNull(binaryProperty);
+        requireNonNull(binaryPath);
 
         final String stringBinaryPath = binaryPath.toString();
         final String systemPropertyBinaryPath = System.getProperty(binaryProperty);

@@ -21,34 +21,42 @@ import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
 import static java.util.Objects.requireNonNull;
 
 /**
+ * Default archive service implementation.
+ *
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
 public class DefaultArchiveService implements ArchiveService {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Path download(final URL url, final Path archivePath) {
-        requireNonNull(url, "url must not be null");
-        requireNonNull(archivePath, "archive path must not be null");
+        requireNonNull(url);
+        requireNonNull(archivePath);
 
         if (Files.exists(archivePath)) {
             return archivePath;
         }
 
-        try (InputStream in = url.openStream()) {
-            Files.copy(in, archivePath, StandardCopyOption.REPLACE_EXISTING);
+        try (InputStream inputStream = url.openStream()) {
+            Files.copy(inputStream, archivePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (final IOException e) {
             throw new WebDriverManagerException("Unable to download archive from url", e);
         }
         return archivePath;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Path extract(final Path archivePath, final String binaryName, final Path binaryPath,
                         final Extension extension) {
-        requireNonNull(archivePath, "archive path must not be null");
-        requireNonNull(binaryName, "binary name must not be null");
-        requireNonNull(binaryPath, "binary path must not be null");
-        requireNonNull(extension, "extension must not be null");
+        requireNonNull(archivePath);
+        requireNonNull(binaryName);
+        requireNonNull(binaryPath);
+        requireNonNull(extension);
 
         if (Files.exists(binaryPath)) {
             return binaryPath;
@@ -68,9 +76,12 @@ public class DefaultArchiveService implements ArchiveService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void remove(final Path archivePath) {
-        requireNonNull(archivePath, "archive path must not be null");
+        requireNonNull(archivePath);
 
         if (!Files.exists(archivePath)) {
             return;
@@ -84,8 +95,8 @@ public class DefaultArchiveService implements ArchiveService {
     }
 
     private Path extractFromExe(final Path archivePath, final Path binaryPath) {
-        requireNonNull(archivePath, "archive path must not be null");
-        requireNonNull(binaryPath, "binary path must not be null");
+        requireNonNull(archivePath);
+        requireNonNull(binaryPath);
 
         try {
             return Files.copy(archivePath, binaryPath, StandardCopyOption.REPLACE_EXISTING);
@@ -95,9 +106,9 @@ public class DefaultArchiveService implements ArchiveService {
     }
 
     private Path extractFromTarGz(final Path archivePath, final String binaryName, final Path binaryPath) {
-        requireNonNull(archivePath, "archive path must not be null");
-        requireNonNull(binaryName, "binary name must not be null");
-        requireNonNull(binaryPath, "binary path must not be null");
+        requireNonNull(archivePath);
+        requireNonNull(binaryName);
+        requireNonNull(binaryPath);
 
         try (InputStream inputStream = Files.newInputStream(archivePath);
              InputStream gzipCompressorInputStream = new GzipCompressorInputStream(inputStream);
@@ -110,9 +121,9 @@ public class DefaultArchiveService implements ArchiveService {
     }
 
     private Path extractFromTarBz(final Path archivePath, final String binaryName, final Path binaryPath) {
-        requireNonNull(archivePath, "archive path must not be null");
-        requireNonNull(binaryName, "binary name must not be null");
-        requireNonNull(binaryPath, "binary path must not be null");
+        requireNonNull(archivePath);
+        requireNonNull(binaryName);
+        requireNonNull(binaryPath);
 
         try (InputStream inputStream = Files.newInputStream(archivePath);
              InputStream bZip2CompressorInputStream = new BZip2CompressorInputStream(inputStream);
@@ -126,9 +137,9 @@ public class DefaultArchiveService implements ArchiveService {
 
     private void extractEntry(final String binaryName, final Path binaryPath,
                               final ArchiveInputStream archiveInputStream) throws IOException {
-        requireNonNull(binaryName, "binary name must not be null");
-        requireNonNull(binaryPath, "binary path must not be null");
-        requireNonNull(archiveInputStream, "archive input stream must not be null");
+        requireNonNull(binaryName);
+        requireNonNull(binaryPath);
+        requireNonNull(archiveInputStream);
 
         ArchiveEntry entry;
         while ((entry = archiveInputStream.getNextEntry()) != null) {
@@ -140,9 +151,9 @@ public class DefaultArchiveService implements ArchiveService {
     }
 
     private Path extractFromZip(final Path archivePath, final String binaryName, final Path binaryPath) {
-        requireNonNull(archivePath, "archive name must not be null");
-        requireNonNull(binaryName, "binary name must not be null");
-        requireNonNull(binaryPath, "binary path must not be null");
+        requireNonNull(archivePath);
+        requireNonNull(binaryName);
+        requireNonNull(binaryPath);
 
         try (InputStream inputStream = Files.newInputStream(archivePath);
              ArchiveInputStream zipArchiveInputStream = new ZipArchiveInputStream(inputStream)) {

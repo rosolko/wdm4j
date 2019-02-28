@@ -11,25 +11,33 @@ import com.github.rosolko.wdm4j.service.FileService;
 import static java.util.Objects.requireNonNull;
 
 /**
+ * Default file service implementation.
+ *
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
 public class DefaultFileService implements FileService {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Path getArchiveTempPath(final String archiveName) {
-        requireNonNull(archiveName, "archive name must not be null");
+        requireNonNull(archiveName);
 
         final String tmpdir = System.getProperty("java.io.tmpdir");
         return Paths.get(tmpdir, archiveName);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Path getBinaryPath(final String browserName, final String binaryVersion, final String platform,
                               final String binaryName) {
-        requireNonNull(browserName, "browser name must not be null");
-        requireNonNull(binaryVersion, "binary version must not be null");
-        requireNonNull(platform, "platform must not be null");
-        requireNonNull(binaryName, "binary name must not be null");
+        requireNonNull(browserName);
+        requireNonNull(binaryVersion);
+        requireNonNull(platform);
+        requireNonNull(binaryName);
 
         final String userDirectory = System.getProperty("user.dir");
         final String prefix = Paths.get("build", "binaries").toString();
@@ -39,7 +47,7 @@ public class DefaultFileService implements FileService {
     }
 
     private void createTargetDirectory(final Path binaryPath) {
-        requireNonNull(binaryPath, "binary path must not be null");
+        requireNonNull(binaryPath);
 
         final Path directory = binaryPath.getParent();
 
