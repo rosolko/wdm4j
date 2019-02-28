@@ -27,9 +27,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
-@DisplayName("WebDriver manager tests")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class WebDriverManagerTests {
+@DisplayName("WebDriver manager test")
+class WebDriverManagerTest {
     private Os os;
     private Architecture architecture;
     private FileService fileService;
@@ -46,8 +46,8 @@ class WebDriverManagerTests {
         );
     }
 
-    @DisplayName("Detect os and architecture, initialize file service")
     @BeforeAll
+    @DisplayName("Detect os and architecture, initialize file service")
     void setUp() {
         os = Os.detect();
         architecture = Architecture.detect();

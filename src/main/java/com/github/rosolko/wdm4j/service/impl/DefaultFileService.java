@@ -24,16 +24,16 @@ public class DefaultFileService implements FileService {
     }
 
     @Override
-    public Path getBinaryPath(final String browserName, final String version, final String platform,
+    public Path getBinaryPath(final String browserName, final String binaryVersion, final String platform,
                               final String binaryName) {
         requireNonNull(browserName, "browser name must not be null");
-        requireNonNull(version, "version must not be null");
+        requireNonNull(binaryVersion, "binary version must not be null");
         requireNonNull(platform, "platform must not be null");
         requireNonNull(binaryName, "binary name must not be null");
 
-        final String dir = System.getProperty("user.dir");
+        final String userDirectory = System.getProperty("user.dir");
         final String prefix = Paths.get("build", "binaries").toString();
-        final Path binaryPath = Paths.get(dir, prefix, browserName, version, platform, binaryName);
+        final Path binaryPath = Paths.get(userDirectory, prefix, browserName, binaryVersion, platform, binaryName);
         createTargetDirectory(binaryPath);
         return binaryPath;
     }

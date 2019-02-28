@@ -2,7 +2,6 @@ package com.github.rosolko.wdm4j.service.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,7 +17,6 @@ import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
 import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
-import org.apache.commons.compress.utils.IOUtils;
 
 import static java.util.Objects.requireNonNull;
 
@@ -90,7 +88,7 @@ public class DefaultArchiveService implements ArchiveService {
         requireNonNull(binaryPath, "binary path must not be null");
 
         try {
-            return Files.copy(archivePath, binaryPath);
+            return Files.copy(archivePath, binaryPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (final IOException e) {
             throw new WebDriverManagerException("Unable to copy file", e);
         }
@@ -101,10 +99,10 @@ public class DefaultArchiveService implements ArchiveService {
         requireNonNull(binaryName, "binary name must not be null");
         requireNonNull(binaryPath, "binary path must not be null");
 
-        try (InputStream fi = Files.newInputStream(archivePath);
-             InputStream gzi = new GzipCompressorInputStream(fi);
-             ArchiveInputStream ti = new TarArchiveInputStream(gzi)) {
-            extractEntry(binaryName, binaryPath, ti);
+        try (InputStream inputStream = Files.newInputStream(archivePath);
+             InputStream gzipCompressorInputStream = new GzipCompressorInputStream(inputStream);
+             ArchiveInputStream tarArchiveInputStream = new TarArchiveInputStream(gzipCompressorInputStream)) {
+            extractEntry(binaryName, binaryPath, tarArchiveInputStream);
         } catch (final IOException e) {
             throw new WebDriverManagerException("Unable to extract binary from tar.gz archive", e);
         }
@@ -116,10 +114,10 @@ public class DefaultArchiveService implements ArchiveService {
         requireNonNull(binaryName, "binary name must not be null");
         requireNonNull(binaryPath, "binary path must not be null");
 
-        try (InputStream fi = Files.newInputStream(archivePath);
-             InputStream gzi = new BZip2CompressorInputStream(fi);
-             ArchiveInputStream ti = new TarArchiveInputStream(gzi)) {
-            extractEntry(binaryName, binaryPath, ti);
+        try (InputStream inputStream = Files.newInputStream(archivePath);
+             InputStream bZip2CompressorInputStream = new BZip2CompressorInputStream(inputStream);
+             ArchiveInputStream tarArchiveInputStream = new TarArchiveInputStream(bZip2CompressorInputStream)) {
+            extractEntry(binaryName, binaryPath, tarArchiveInputStream);
         } catch (final IOException e) {
             throw new WebDriverManagerException("Unable to extract binary from tar.gz archive", e);
         }
@@ -134,11 +132,9 @@ public class DefaultArchiveService implements ArchiveService {
 
         ArchiveEntry entry;
         while ((entry = archiveInputStream.getNextEntry()) != null) {
-            final String name = Paths.get(entry.getName()).getFileName().toString();
-            if (name.equals(binaryName) && !entry.isDirectory()) {
-                try (OutputStream o = Files.newOutputStream(binaryPath)) {
-                    IOUtils.copy(archiveInputStream, o);
-                }
+            final String entryName = Paths.get(entry.getName()).getFileName().toString();
+            if (entryName.equals(binaryName) && !entry.isDirectory()) {
+                Files.copy(archiveInputStream, binaryPath, StandardCopyOption.REPLACE_EXISTING);
             }
         }
     }
@@ -148,9 +144,9 @@ public class DefaultArchiveService implements ArchiveService {
         requireNonNull(binaryName, "binary name must not be null");
         requireNonNull(binaryPath, "binary path must not be null");
 
-        try (InputStream fi = Files.newInputStream(archivePath);
-             ArchiveInputStream zi = new ZipArchiveInputStream(fi)) {
-            extractEntry(binaryName, binaryPath, zi);
+        try (InputStream inputStream = Files.newInputStream(archivePath);
+             ArchiveInputStream zipArchiveInputStream = new ZipArchiveInputStream(inputStream)) {
+            extractEntry(binaryName, binaryPath, zipArchiveInputStream);
         } catch (final IOException e) {
             throw new WebDriverManagerException("Unable to extract binary from zip archive", e);
         }

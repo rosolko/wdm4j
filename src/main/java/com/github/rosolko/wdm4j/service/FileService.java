@@ -9,5 +9,5 @@ import java.nio.file.Path;
 public interface FileService {
     Path getArchiveTempPath(String archiveName);
 
-    Path getBinaryPath(String browserName, String version, String platform, String binaryName);
+    Path getBinaryPath(String browserName, String binaryVersion, String platform, String binaryName);
 }
