@@ -13,7 +13,6 @@ import com.github.rosolko.wdm4j.service.PermissionService;
 
 import static java.util.Objects.requireNonNull;
 
-
 /**
  * @author Aliaksandr Rasolka
  * @since 1.0.0

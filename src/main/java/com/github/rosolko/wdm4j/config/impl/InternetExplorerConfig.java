@@ -4,6 +4,10 @@ import com.github.rosolko.wdm4j.config.CommonConfig;
 import com.github.rosolko.wdm4j.enums.Architecture;
 import com.github.rosolko.wdm4j.enums.Os;
 
+/**
+ * @author Aliaksandr Rasolka
+ * @since 1.0.0
+ */
 public class InternetExplorerConfig implements CommonConfig {
     @Override
     public String getBrowserName() {

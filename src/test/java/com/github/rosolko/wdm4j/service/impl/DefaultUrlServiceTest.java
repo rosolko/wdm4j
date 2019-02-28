@@ -12,6 +12,10 @@ import org.junit.jupiter.api.TestInstance;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * @author Aliaksandr Rasolka
+ * @since 1.0.0
+ */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DisplayName("Default permission service test")
 class DefaultUrlServiceTest {
