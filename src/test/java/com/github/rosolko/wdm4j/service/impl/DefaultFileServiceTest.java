@@ -30,7 +30,7 @@ class DefaultFileServiceTest {
 
     @Test
     @DisplayName("Get archive temp path by archive name")
-    void getArchiveTempPath() throws IOException {
+    void ableToGetArchiveTempPath() throws IOException {
         final Path archiveTempPath = Files.createTempFile("chromedriver", ".tar.gz");
         final String archiveName = archiveTempPath.getFileName().toString();
 
@@ -40,7 +40,7 @@ class DefaultFileServiceTest {
 
     @Test
     @DisplayName("Get binary path based on browser name, binary version, platform and binary name")
-    void getBinaryPath() {
+    void ableToGetBinaryPath() {
         final String browserName = "testBrowserName";
         final String version = "4.1.01235";
         final String platform = "windows64";

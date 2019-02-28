@@ -10,6 +10,7 @@ import static java.util.Objects.requireNonNull;
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
+@SuppressWarnings("PMD.FieldNamingConventions")
 public enum Os {
     /**
      * windows operation system.

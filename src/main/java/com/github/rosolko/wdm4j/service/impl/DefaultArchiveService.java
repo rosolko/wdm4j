@@ -18,6 +18,7 @@ import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
 import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
 
+import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -141,12 +142,13 @@ public class DefaultArchiveService implements ArchiveService {
         requireNonNull(binaryPath);
         requireNonNull(archiveInputStream);
 
-        ArchiveEntry entry;
-        while ((entry = archiveInputStream.getNextEntry()) != null) {
+        ArchiveEntry entry = archiveInputStream.getNextEntry();
+        while (nonNull(entry)) {
             final String entryName = Paths.get(entry.getName()).getFileName().toString();
             if (entryName.equals(binaryName) && !entry.isDirectory()) {
                 Files.copy(archiveInputStream, binaryPath, StandardCopyOption.REPLACE_EXISTING);
             }
+            entry = archiveInputStream.getNextEntry();
         }
     }
 

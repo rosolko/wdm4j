@@ -37,7 +37,7 @@ class DefaultArchiveServiceTest {
 
     @Test
     @DisplayName("Download archive from URL to archive path")
-    void download(@TempDir final Path tempDir) throws MalformedURLException {
+    void ableToDownloadArchive(@TempDir final Path tempDir) throws MalformedURLException {
         final URL url = new URL("https://chromedriver.storage.googleapis.com/2.27/chromedriver_win32.zip");
         final Path archivePath = tempDir.resolve("chromedriver_win32.zip");
 
@@ -49,7 +49,7 @@ class DefaultArchiveServiceTest {
 
     @Test
     @DisplayName("Extract variable from archive by extension using binary name to binary path")
-    void extract(@TempDir final Path tempDir) throws IOException {
+    void ableToExtractEntryFromArchive(@TempDir final Path tempDir) throws IOException {
         final Path archive = Files.createTempFile("chromedriver", ".zip");
         final Path binary = Files.createTempFile("chromedriver", ".txt");
         final byte[] data = Files.readAllBytes(binary);
@@ -73,7 +73,7 @@ class DefaultArchiveServiceTest {
 
     @Test
     @DisplayName("Remove archive by path")
-    void remove() throws IOException {
+    void ableToRemoveArchive() throws IOException {
         final File archive = File.createTempFile("archive", ".zip");
         final Path archivePath = archive.toPath();
 

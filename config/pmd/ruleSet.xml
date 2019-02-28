@@ -66,6 +66,7 @@
         <exclude name="NcssTypeCount"/>
         <exclude name="SimplifyBooleanAssertion"/>
         <exclude name="StdCyclomaticComplexity"/>
+        <exclude name="UseObjectForClearerAPI"/>
     </rule>
 
     <rule ref="category/java/documentation.xml">

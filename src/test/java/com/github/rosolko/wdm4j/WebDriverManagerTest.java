@@ -35,6 +35,7 @@ class WebDriverManagerTest {
     private FileService fileService;
     private WebDriverManager webDriverManager;
 
+    @SuppressWarnings("PMD.UnusedPrivateMethod")
     private static Stream<CommonConfig> createConfigs() {
         return Stream.of(
             new ChromeConfig(),

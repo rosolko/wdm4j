@@ -17,7 +17,8 @@ import static org.apache.logging.log4j.LogManager.getLogger;
  * @since 1.0.0
  */
 public final class OsDetector extends Detector {
-    private static final Logger log = getLogger();
+    @SuppressWarnings("PMD.FieldNamingConventions")
+    private static final Logger logger = getLogger();
     private static OsDetector instance = new OsDetector();
     private final Properties detectedProperties = new Properties();
 
@@ -62,7 +63,7 @@ public final class OsDetector extends Detector {
      */
     @Override
     protected void log(final String message) {
-        log.info(message);
+        logger.info(message);
     }
 
     /**
@@ -70,6 +71,6 @@ public final class OsDetector extends Detector {
      */
     @Override
     protected void logProperty(final String name, final String value) {
-        log.info(name + "=" + value);
+        logger.info(name + "=" + value);
     }
 }

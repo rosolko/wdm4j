@@ -29,7 +29,7 @@ class DefaultUrlServiceTest {
 
     @Test
     @DisplayName("Build url from pattern based on version, platform and extension")
-    void buildUrl() {
+    void ableToBuildDownloadUrl() {
         final String pattern = "https://some-host.html/{version}/{platform}.{extension}";
         final String version = "v0.0.7";
         final String platform = "osx";
@@ -41,7 +41,7 @@ class DefaultUrlServiceTest {
 
     @Test
     @DisplayName("Get file name from url")
-    void getFileNameFromUrl() throws MalformedURLException {
+    void ableToGetFileNameFromUrl() throws MalformedURLException {
         final URL url = new URL("https://some-host.html/some-file-name.tar");
 
         final String result = urlService.getFileNameFromUrl(url);
