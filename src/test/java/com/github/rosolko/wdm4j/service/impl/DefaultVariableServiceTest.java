@@ -32,6 +32,6 @@ class DefaultVariableServiceTest {
         final String actual = System.getProperty(tempBinaryProperty);
         assertThat(actual)
             .isNotNull()
-            .isEqualTo(tempBinaryPath);
+            .isEqualTo(tempBinaryPath.toString());
     }
 }
