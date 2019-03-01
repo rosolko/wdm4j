@@ -16,6 +16,11 @@
         <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE"/>
     </Match>
     <Match>
+        <Class name="com.github.rosolko.wdm4j.service.impl.DefaultArchiveService"/>
+        <Method name="download"/>
+        <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE"/>
+    </Match>
+    <Match>
         <Class name="com.github.rosolko.wdm4j.service.impl.DefaultArchiveServiceTest"/>
         <Method name="ableToExtractEntryFromArchive"/>
         <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE"/>
