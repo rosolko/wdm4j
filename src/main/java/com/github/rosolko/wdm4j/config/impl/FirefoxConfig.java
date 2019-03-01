@@ -59,6 +59,9 @@ public class FirefoxConfig implements CommonConfig {
 
     /**
      * {@inheritDoc}
+     * <br>
+     * <br>
+     * Lock with {@code "macos"} value for {@link Os#osx} operation system.
      */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {
@@ -87,6 +90,13 @@ public class FirefoxConfig implements CommonConfig {
 
     /**
      * {@inheritDoc}
+     * <br>
+     * <br>
+     * Lock archive extension based on operation system.
+     * <br>
+     * For windows - {@link Extension#ZIP}
+     * <br>
+     * For linux/mac - {@link Extension#TAR_GZ}
      */
     @Override
     public Extension getArchiveExtension(final Os os) {

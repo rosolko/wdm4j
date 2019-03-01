@@ -53,6 +53,11 @@ public class PhantomJsConfig implements CommonConfig {
 
     /**
      * {@inheritDoc}
+     * <br>
+     * <br>
+     * Lock operation system with {@code "macosx"} value for {@link Os#osx} operation system.
+     * <br>
+     * Lock architecture with empty value for windows/mac operation system.
      */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {
@@ -68,6 +73,9 @@ public class PhantomJsConfig implements CommonConfig {
 
     /**
      * {@inheritDoc}
+     * <br>
+     * <br>
+     * Lock with {@code "2.1.1"} value.
      */
     @Override
     public String getLatestVersion() {
@@ -76,6 +84,13 @@ public class PhantomJsConfig implements CommonConfig {
 
     /**
      * {@inheritDoc}
+     * <br>
+     * <br>
+     * Lock archive extension based on operation system.
+     * <br>
+     * For linux - {@link Extension#TAR_BZ2}
+     * <br>
+     * For windows/mac - {@link Extension#ZIP}
      */
     @Override
     public Extension getArchiveExtension(final Os os) {

@@ -59,6 +59,13 @@ public class ChromeConfig implements CommonConfig {
 
     /**
      * {@inheritDoc}
+     * <br>
+     * <br>
+     * Lock architectures based on operation system.
+     * <br>
+     * For windows - {@link Architecture#x86_32}
+     * <br>
+     * For linux/mac - {@link Architecture#x86_64}
      */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {

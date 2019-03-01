@@ -46,6 +46,9 @@ public class EdgeConfig implements CommonConfig {
 
     /**
      * {@inheritDoc}
+     * <br>
+     * <br>
+     * Lock with {@code "6.17134"} value.
      */
     @Override
     public String getLatestVersion() {
@@ -54,6 +57,9 @@ public class EdgeConfig implements CommonConfig {
 
     /**
      * {@inheritDoc}
+     * <br>
+     * <br>
+     * Lock with {@link Extension#EXE} value.
      */
     @Override
     public Extension getArchiveExtension(final Os os) {
@@ -62,6 +68,9 @@ public class EdgeConfig implements CommonConfig {
 
     /**
      * {@inheritDoc}
+     * <br>
+     * <br>
+     * Lock with {@link Os#windows} and {@link Architecture#x86_64} values.
      */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {

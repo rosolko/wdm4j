@@ -29,6 +29,9 @@ public class InternetExplorerConfig implements CommonConfig {
 
     /**
      * {@inheritDoc}
+     * <br>
+     * <br>
+     * Lock with {@code "3.141"} value.
      */
     @Override
     public String getLatestVersion() {
@@ -53,6 +56,9 @@ public class InternetExplorerConfig implements CommonConfig {
 
     /**
      * {@inheritDoc}
+     * <br>
+     * <br>
+     * Lock with {@link Os#windows} and {@link Architecture#x86_32} values.
      */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {

@@ -59,6 +59,9 @@ public class OperaConfig implements CommonConfig {
 
     /**
      * {@inheritDoc}
+     * <br>
+     * <br>
+     * Lock architecture with {@link Architecture#x86_32} value for {@link Os#windows} operation system.
      */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {
