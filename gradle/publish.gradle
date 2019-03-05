@@ -3,6 +3,7 @@ import java.time.format.DateTimeFormatter
 
 apply plugin: "maven-publish"
 apply plugin: "signing"
+apply plugin: "com.jfrog.bintray"
 
 tasks.register("sourcesJar", Jar) {
     from sourceSets.main.allJava
@@ -72,5 +73,17 @@ publishing {
 signing {
     if (project.hasProperty("signing.keyId")) {
         sign publishing.publications
+    }
+}
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    publications = ['mavenJava']
+    pkg {
+        repo = 'maven'
+        name = 'wdm4j'
+        vcsUrl = 'https://github.com/rosolko/wdm4j.git'
+        licenses = ['MIT']
     }
 }
