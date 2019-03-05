@@ -13,11 +13,6 @@ cache:
     - $HOME/.gradle/wrapper/
     - $HOME/.sonar/cache
 
-addons:
-  sonarcloud:
-    organization: "rosolko-github"
-    token: $SONAR_TOKEN
-
 script:
   - ./gradlew check --no-daemon --no-build-cache --console=plain
-  - sonar-scanner
+  - ./gradlew sonarqube --no-daemon --no-build-cache --console=plain -Dsonar.projectKey=rosolko_wdm4j -Dsonar.organization=rosolko-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
