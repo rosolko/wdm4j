@@ -3,20 +3,18 @@
 [![](https://travis-ci.com/rosolko/wdm4j.svg?branch=master)](https://travis-ci.com/rosolko/wdm4j)
 [![](https://sonarcloud.io/api/project_badges/measure?project=rosolko_wdm4j&metric=alert_status)](https://sonarcloud.io/dashboard?id=rosolko_wdm4j)
 [![](https://sonarcloud.io/api/project_badges/measure?project=rosolko_wdm4j&metric=coverage)](https://sonarcloud.io/dashboard?id=rosolko_wdm4j)
-[![](https://jitpack.io/v/rosolko/wdm4j.svg)](https://jitpack.io/#rosolko/wdm4j)
+[![](https://api.bintray.com/packages/rosolko/maven/wdm4j/images/download.svg) ](https://bintray.com/rosolko/maven/wdm4j/_latestVersion)
 
 This small library aimed to automate the Selenium WebDriver binaries management inside a java project.
 
 ## Installation
 
-    allprojects {
-        repositories {
-            maven { url 'https://jitpack.io' }
-        }
+    repositories {
+        jcenter()
     }
 
 	dependencies {
-	    implementation 'com.github.rosolko:wdm4j:master-SNAPSHOT'
+        implementation 'com.github.rosolko:wdm4j:1.0.0'
 	}
 
 ## Using
