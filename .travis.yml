@@ -16,8 +16,7 @@ cache:
 addons:
   sonarcloud:
     organization: "rosolko-github"
-    token:
-      secure: "gVRPLeDqHTcbcooCNFlWVbRr/LESkguXqZbm/gEF5X6Ij3n2PBTS6hZ68Q5BB9HTF3XmFdb2QJzKv2Rjh7vvllRTc+nAcXBpPG1493gZ3OkZ5O1lUOMgK/Bxs2fvPgWDyfLNVLpUb1A81x9Y7NRWNGfEpix7l+9ydqSa/6cd4/SHs4gN6lV/cLAqzp1R9C4pmxr0kQ0b7VvHofP+MCNL4Umdrs2VVtwyfJYAx5Urc+EyP5y2/QBDSrMpW6G8s6UV2LjfTV9dtBZAF47i5ZjZosxsX3eWjD3hfbLsastifpvd66MjFr1yzcS5d1xphE7MKl5Fe+dD2zfIpouOgHSDFykt+bP0XBfAGdsKm/qVi9M3iXhCCl79z8pQyEM3FTEHIP8HOapl1ru41xqSD+Hbl2Ji4PZGhg/Ix5QxkO3gOAXUXAZgB/KHQlJjph15lUoDF5worpkf7xdSKTxcYQEzcejgUBoChLhFXLW9rbWgifChXC/EMQbSght88X8fyH5SsZfwkagBQVuMJyNh40ubfntnN/hzum2zvn7BrfZ/m2b7DjepdieEni2QhQVEnkog8DkrHflpNoFnui0gBSdhU5fNvC8lfJd4UxYhH2QL3Jo5pFpAMYOykX1oY9vpGH36LEx31X5S1AbDgsfz6ei/J8kCZ5o9D8+2Q7r/0LVn7Gg="
+    token: $SONAR_TOKEN
 
 script:
   - ./gradlew check --no-daemon --no-build-cache --console=plain
