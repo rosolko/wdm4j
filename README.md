@@ -11,7 +11,7 @@ This small library aimed to automate the Selenium WebDriver binaries management 
 ## Installation
 
     repositories {
-        jcenter()
+        jcenter() OR mavenCentral()
     }
 
 	dependencies {
