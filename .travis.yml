@@ -13,5 +13,12 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 
+addons:
+  sonarcloud:
+    organization: "rosolko-github"
+    token:
+      secure: AxMAP8AVI7zwz0Rf1L1aHGYr2R1akxFSEeLiGMpDkggvAC5QRFMCCZXL30/wttU51BV+2uYnEeZD6fG9LYOHwZA7XMmUIamnb/MKxT2bKrZLgGrIqGKN6iR4hspg2tA15QObmV4JjVcFr8xp3Y4sYgnxBgKBDlpFXnNXkUTGNfA5cm1DZypubW58GyzEgN5GB3NDiJQReD+zgt0+gn3jWbwzGAvQ0xnh5NyfVpeZ4Kx8b3b+up9DNjz/9KtkDHW0roXprKrM7u1gnvjoYPVYidLHKWFfByIPqOwPLrQQW6p1bCECI0rPVpkv2yvHt7vN/cYVO9RP92fhbgqnkB9KQs0WJuzooJGbYIc2gGwlJXs5C1VJ2JM4GwKZqWqi7RjuuPzjdUD/SAoDHzsofP0BLGy5mOI81YBIkHSUMpBeykufZ4wyDG0H31WhOAfzcWq9dfsebNz4JRCB6Uw0NIeCIu2bQ2wzOHjjEN7Z7+jnJYCL6X2mQlz74zKdXVShVvuR/vslrGvnA0u4V0kgOde7df7XGR7rJV2Io0GwQ95RBMEzOSz505/+9EQmG+N1vXnpCDrCbfvNgzlbn8mgVwyrB/2jqiZwrlOAVft2hqftIIp0PiBB8MQ4YANtwvaPyV40pTLS3kx7OsWPW97xstphC4b6d0GXSx7GWcBKRlmf6lc=
+
 script:
   - ./gradlew check --no-daemon --no-build-cache --console=plain
+  - sonar-scanner
