@@ -25,7 +25,7 @@ ext {
 jar {
     manifest {
         attributes(
-            "Automatic-Module-Name": "wdm4j",
+            "Automatic-Module-Name": "com.github.rosolko.wdm4j",
             "Built-By": "Gradle",
             "Build-Date": buildDate,
             "Build-Time": buildTime,
