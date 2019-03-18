@@ -16,3 +16,4 @@ cache:
 
 script:
   - ./gradlew check --no-daemon --no-build-cache --console=plain
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./gradlew sonarqube --no-daemon --no-build-cache --console=plain -Dsonar.projectKey=rosolko_wdm4j -Dsonar.organization=rosolko-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN; fi'
