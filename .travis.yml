@@ -22,4 +22,3 @@ cache:
 
 script:
   - ./gradlew check --no-daemon --no-build-cache --console=plain
-  - sonar-scanner
