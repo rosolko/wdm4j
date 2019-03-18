@@ -4,6 +4,12 @@ jdk:
   - oraclejdk8
   - openjdk11
 
+addons:
+  sonarcloud:
+    organization: "rosolko-github"
+    token:
+      secure: "VoEd8NobW2+ph4givWfXNsyMGx8y2vRd0fVFIzI6JxUFjaIYbLyJFNZ1F0vJIy/Xvsd99vidEnyZo8Z7J/MowcQr7TxzKu8vixtQuyDnVgpzxSRGwJxWx8tmbQd3/hsiaSWhiKUYa6CNRYYtvSF1AWy9hzBvhbzJr17b74kvCpoSpEdY/bHZMV4/d23NxIbxdLX62JQYkWdq6r+aVC8xgyv0VvpZT7QgZamOGeGfIj6SlMLNF5uUWtFt9bGNs4dT/r88o8coVuNQ8DkCe+aP7SPLpSIaZGGyNNaQVoIihyr9oIAkVYMRmIkGHfbrilAnikrzJ6BiYDYo+1beB3bEDpYHJfCdWVtkq92cg+Z2DeRNUzFP+vtyec5XR3kRrZTg1uAK3+S8IWDGB1tpzDjJyxdUWgY+mwEeKcRDzkzoZWnwQVaJBeow+7i38huhGSR7bJiCI0awoRJa1AiwMoocPOHaznIc/hArw4TjvI9Pz6bWAyuNYa5mMEeW/rtgUVAPs8+WVeRsFlRecysVoEpSBMMSd2QiXMAX2w9mlbi6u5pWjcWuyKLmt3GiTBdqUCYteVwb6COsB8he4PdHMDOOBFUWExLRoKjK8lnksdJ4XWI7eYwhb23cKCymqaIPAYNH3MhVR2POSB2ZaOX8ZIPdtsKLuxH0ez3RDp8Cjw+jhLY="
+
 before_cache:
   - rm -f  $HOME/.gradle/caches/*/*.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -16,4 +22,4 @@ cache:
 
 script:
   - ./gradlew check --no-daemon --no-build-cache --console=plain
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./gradlew sonarqube --no-daemon --no-build-cache --console=plain -Dsonar.projectKey=rosolko_wdm4j -Dsonar.organization=rosolko-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN; fi'
+  - sonar-scanner
