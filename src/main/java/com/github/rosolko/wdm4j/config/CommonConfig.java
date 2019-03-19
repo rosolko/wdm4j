@@ -23,18 +23,35 @@ public interface CommonConfig {
     String getBrowserName();
 
     /**
-     * Get binary name based on operation system name can it return with extension.
+     * Get binary name.
+     * <br>
+     * Example for chromedriver - {@code "chromedriver"}.
+     *
+     * @return A binary name
+     */
+    String getBinaryName();
+
+    /**
+     * Get binary full name based on operation system and the name itself can it return with extension.
      * <br>
      * Example for windows - {@code "chromedriver.exe"}.
      * <br>
      * Example for mac and linux - {@code "chromedriver"}.
      *
-     * @param os A target operation system
+     * @param os   A target operation system
      * @return A binary name
      * @see Os
      * @see Extension
      */
-    String getBinaryName(Os os);
+    default String getBinaryNameWithExtension(final Os os) {
+        final String name = getBinaryName();
+        requireNonNull(name);
+        requireNonNull(os);
+
+        return os == Os.WINDOWS
+            ? String.format("%s.%s", name, Extension.EXE.getValue())
+            : name;
+    }
 
     /**
      * Get latest binary version.

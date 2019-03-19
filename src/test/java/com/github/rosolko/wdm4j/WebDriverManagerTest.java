@@ -62,7 +62,7 @@ class WebDriverManagerTest {
     void ableToSetUpBinary(final CommonConfig config) {
         final String version = config.getLatestVersion();
         final String platform = config.getPlatform(os, architecture);
-        final String binaryName = config.getBinaryName(os);
+        final String binaryName = config.getBinaryNameWithExtension(os);
         final Path binaryPath = fileService.getBinaryPath(config.getBrowserName(), version, platform, binaryName);
         final String variable = config.getBinaryVariable();
 
@@ -81,7 +81,7 @@ class WebDriverManagerTest {
 
         final CommonConfig config = new FirefoxConfig();
         final String platform = config.getPlatform(os, architecture);
-        final String binaryName = config.getBinaryName(os);
+        final String binaryName = config.getBinaryNameWithExtension(os);
         final Path binaryPath = fileService.getBinaryPath(config.getBrowserName(), version, platform, binaryName);
         final String variable = config.getBinaryVariable();
 

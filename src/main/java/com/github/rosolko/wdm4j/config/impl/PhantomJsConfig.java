@@ -26,13 +26,8 @@ public class PhantomJsConfig implements CommonConfig {
      * {@inheritDoc}
      */
     @Override
-    public String getBinaryName(final Os os) {
-        requireNonNull(os);
-
-        final String name = "phantomjs";
-        return os == Os.WINDOWS
-            ? String.format("%s.%s", name, Extension.EXE.getValue())
-            : name;
+    public String getBinaryName() {
+        return "phantomjs";
     }
 
     /**

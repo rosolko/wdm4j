@@ -107,7 +107,7 @@ public final class WebDriverManager {
         final String pattern = config.getUrlPattern();
         final String platform = config.getPlatform(os, architecture);
         final Extension extension = config.getArchiveExtension(os);
-        final String binaryName = config.getBinaryName(os);
+        final String binaryName = config.getBinaryNameWithExtension(os);
         final String binaryVariable = config.getBinaryVariable();
         final Path binaryPath = fileService.getBinaryPath(config.getBrowserName(), version, platform, binaryName);
 

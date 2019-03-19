@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.github.rosolko.wdm4j.config.CommonConfig;
 import com.github.rosolko.wdm4j.enums.Architecture;
-import com.github.rosolko.wdm4j.enums.Extension;
 import com.github.rosolko.wdm4j.enums.Os;
 import com.github.rosolko.wdm4j.exception.WebDriverManagerException;
 import org.jsoup.Jsoup;
@@ -32,13 +31,8 @@ public class ChromeConfig implements CommonConfig {
      * {@inheritDoc}
      */
     @Override
-    public String getBinaryName(final Os os) {
-        requireNonNull(os);
-
-        final String name = "chromedriver";
-        return os == Os.WINDOWS
-            ? String.format("%s.%s", name, Extension.EXE.getValue())
-            : name;
+    public String getBinaryName() {
+        return "chromedriver";
     }
 
     /**

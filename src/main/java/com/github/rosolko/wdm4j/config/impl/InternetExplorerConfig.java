@@ -23,7 +23,15 @@ public class InternetExplorerConfig implements CommonConfig {
      * {@inheritDoc}
      */
     @Override
-    public String getBinaryName(final Os os) {
+    public String getBinaryName() {
+        return "IEDriverServer";
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getBinaryNameWithExtension(final Os os) {
         return "IEDriverServer.exe";
     }
 

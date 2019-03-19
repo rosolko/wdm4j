@@ -24,7 +24,15 @@ public class EdgeConfig implements CommonConfig {
      * {@inheritDoc}
      */
     @Override
-    public String getBinaryName(final Os os) {
+    public String getBinaryName() {
+        return "MicrosoftWebDrive";
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getBinaryNameWithExtension(final Os os) {
         return "MicrosoftWebDriver.exe";
     }
 
