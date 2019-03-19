@@ -30,7 +30,7 @@ public class PhantomJsConfig implements CommonConfig {
         requireNonNull(os);
 
         final String name = "phantomjs";
-        return os == Os.windows
+        return os == Os.WINDOWS
             ? String.format("%s.%s", name, Extension.EXE.getValue())
             : name;
     }
@@ -55,7 +55,7 @@ public class PhantomJsConfig implements CommonConfig {
      * {@inheritDoc}
      * <br>
      * <br>
-     * Lock operation system with {@code "macosx"} value for {@link Os#osx} operation system.
+     * Lock operation system with {@code "macosx"} value for {@link Os#OSX} operation system.
      * <br>
      * Lock architecture with empty value for windows/mac operation system.
      */
@@ -64,8 +64,8 @@ public class PhantomJsConfig implements CommonConfig {
         requireNonNull(os);
         requireNonNull(architecture);
 
-        final String outOs = os == Os.osx ? "macosx" : os.toString();
-        final String outArchitecture = os == Os.linux ? architecture.toString() : "";
+        final String outOs = os == Os.OSX ? "macosx" : os.getDetectValue();
+        final String outArchitecture = os == Os.LINUX ? architecture.getDetectValue() : "";
         final String outFormat = outArchitecture.isEmpty() ? "%s%s" : "%s-%s";
 
         return String.format(outFormat, outOs, outArchitecture);
@@ -96,7 +96,7 @@ public class PhantomJsConfig implements CommonConfig {
     public Extension getArchiveExtension(final Os os) {
         requireNonNull(os);
 
-        return os == Os.linux
+        return os == Os.LINUX
             ? Extension.TAR_BZ2
             : Extension.ZIP;
     }

@@ -1,7 +1,6 @@
 package com.github.rosolko.wdm4j;
 
 import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -96,9 +95,8 @@ public final class WebDriverManager {
     /**
      * Perform basic setup with binary version override.
      *
-     * @param config A configuration upon which the setup will be based
+     * @param config  A configuration upon which the setup will be based
      * @param version An exact binary version
-     *
      * @see WebDriverManager#setup(CommonConfig)
      */
     public void setup(final CommonConfig config, final String version) {
@@ -117,7 +115,7 @@ public final class WebDriverManager {
             if (!queue.contains(binaryPath)) {
                 queue.add(binaryPath);
                 Path unarchivedBinaryPath;
-                if (!Files.exists(binaryPath)) {
+                if (!binaryPath.toFile().exists()) {
                     final URL url = urlService.buildUrl(pattern, version, platform, extension);
                     final String archiveName = urlService.getFileNameFromUrl(url);
                     final Path archiveTempPath = fileService.getArchiveTempPath(archiveName);

@@ -36,7 +36,7 @@ public class DefaultArchiveService implements ArchiveService {
         requireNonNull(url);
         requireNonNull(archivePath);
 
-        if (Files.exists(archivePath)) {
+        if (archivePath.toFile().exists()) {
             return archivePath;
         }
 
@@ -59,7 +59,7 @@ public class DefaultArchiveService implements ArchiveService {
         requireNonNull(binaryPath);
         requireNonNull(extension);
 
-        if (Files.exists(binaryPath)) {
+        if (binaryPath.toFile().exists()) {
             return binaryPath;
         }
 
@@ -84,7 +84,7 @@ public class DefaultArchiveService implements ArchiveService {
     public void remove(final Path archivePath) {
         requireNonNull(archivePath);
 
-        if (!Files.exists(archivePath)) {
+        if (!archivePath.toFile().exists()) {
             return;
         }
 

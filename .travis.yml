@@ -4,6 +4,9 @@ jdk:
   - oraclejdk8
   - openjdk11
 
+git:
+  depth: false
+
 before_cache:
   - rm -f  $HOME/.gradle/caches/*/*.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/

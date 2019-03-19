@@ -28,7 +28,7 @@ public class DefaultPermissionService implements PermissionService {
         requireNonNull(os);
         requireNonNull(binaryPath);
 
-        if (os == Os.windows || binaryPath.endsWith(Extension.EXE.getValue())) {
+        if (os == Os.WINDOWS || binaryPath.endsWith(Extension.EXE.getValue())) {
             return;
         }
 

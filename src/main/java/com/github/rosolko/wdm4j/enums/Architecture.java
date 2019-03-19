@@ -1,5 +1,8 @@
 package com.github.rosolko.wdm4j.enums;
 
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+
 import com.github.rosolko.wdm4j.util.OsDetector;
 
 import static java.util.Objects.requireNonNull;
@@ -15,21 +18,24 @@ public enum Architecture {
     /**
      * x86_32 bit operation system.
      */
-    x86_32("32"),
+    X_86_32("x86_32", "32"),
     /**
      * x86_64 bit operation system.
      */
-    x86_64("64"),
+    X_86_64("x86_64", "64"),
     /**
      * i686 bit operation system.
      */
-    i686("68");
+    I_686("i686", "68");
 
+    private final String detectValue;
     private final String value;
 
-    Architecture(final String value) {
+    Architecture(final String detectValue, final String value) {
+        requireNonNull(detectValue);
         requireNonNull(value);
 
+        this.detectValue = detectValue;
         this.value = value;
     }
 
@@ -40,7 +46,23 @@ public enum Architecture {
      * @see OsDetector#getArch
      */
     public static Architecture detect() {
-        return Architecture.valueOf(OsDetector.getInstance().getArch());
+        return Architecture.ofValue(OsDetector.getInstance().getArch());
+    }
+
+    private static Architecture ofValue(final String architecture) {
+        return Arrays.stream(Architecture.values())
+            .filter(value -> value.getDetectValue().equalsIgnoreCase(architecture))
+            .findFirst()
+            .orElseThrow(() -> new NoSuchElementException("Unknown architecture: '" + architecture + "'"));
+    }
+
+    /**
+     * Return architecture detect string representative.
+     *
+     * @return An architecture detect string representative
+     */
+    public String getDetectValue() {
+        return detectValue;
     }
 
     /**

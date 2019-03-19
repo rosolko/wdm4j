@@ -51,7 +51,7 @@ public class DefaultFileService implements FileService {
 
         final Path directory = binaryPath.getParent();
 
-        if (Files.exists(directory)) {
+        if (directory.toFile().exists()) {
             return;
         }
 

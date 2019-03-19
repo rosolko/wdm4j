@@ -33,7 +33,7 @@ class DefaultPermissionServiceTest {
     void ableToMakeBinaryExecutable() throws IOException {
         final Path binaryPath = Files.createTempFile("chromedriver", ".sh");
 
-        permissionService.makeExecutable(Os.linux, binaryPath);
+        permissionService.makeExecutable(Os.LINUX, binaryPath);
         assertThat(binaryPath).isExecutable();
     }
 }

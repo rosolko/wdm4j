@@ -36,7 +36,7 @@ public class ChromeConfig implements CommonConfig {
         requireNonNull(os);
 
         final String name = "chromedriver";
-        return os == Os.windows
+        return os == Os.WINDOWS
             ? String.format("%s.%s", name, Extension.EXE.getValue())
             : name;
     }
@@ -63,18 +63,18 @@ public class ChromeConfig implements CommonConfig {
      * <br>
      * Lock architectures based on operation system.
      * <br>
-     * For windows - {@link Architecture#x86_32}
+     * For windows - {@link Architecture#X_86_32}
      * <br>
-     * For linux/mac - {@link Architecture#x86_64}
+     * For linux/mac - {@link Architecture#X_86_64}
      */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {
         requireNonNull(os);
         requireNonNull(architecture);
 
-        final Architecture outArchitecture = os == Os.windows
-            ? Architecture.x86_32
-            : Architecture.x86_64;
+        final Architecture outArchitecture = os == Os.WINDOWS
+            ? Architecture.X_86_32
+            : Architecture.X_86_64;
         return String.format("%s%s", os.getValue(), outArchitecture.getValue());
     }
 

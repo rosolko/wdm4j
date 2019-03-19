@@ -24,7 +24,7 @@ public final class OsDetector extends Detector {
 
     private OsDetector() {
         final List<String> keys = Arrays.asList("os.name", "os.arch", "os.version");
-        keys.forEach((key) -> {
+        keys.forEach(key -> {
             final String value = System.getProperty(key);
             detectedProperties.put(key, value);
         });

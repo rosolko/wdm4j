@@ -1,5 +1,8 @@
 package com.github.rosolko.wdm4j.enums;
 
+import java.util.Arrays;
+import java.util.NoSuchElementException;
+
 import com.github.rosolko.wdm4j.util.OsDetector;
 
 import static java.util.Objects.requireNonNull;
@@ -15,21 +18,24 @@ public enum Os {
     /**
      * windows operation system.
      */
-    windows("win"),
+    WINDOWS("windows", "win"),
     /**
      * linux operation system.
      */
-    linux("linux"),
+    LINUX("linux", "linux"),
     /**
      * macos operation system.
      */
-    osx("mac");
+    OSX("osx", "mac");
 
+    private final String detectValue;
     private final String value;
 
-    Os(final String value) {
+    Os(final String detectValue, final String value) {
+        requireNonNull(detectValue);
         requireNonNull(value);
 
+        this.detectValue = detectValue;
         this.value = value;
     }
 
@@ -40,7 +46,23 @@ public enum Os {
      * @see OsDetector#getOs
      */
     public static Os detect() {
-        return Os.valueOf(OsDetector.getInstance().getOs());
+        return Os.ofValue(OsDetector.getInstance().getOs());
+    }
+
+    private static Os ofValue(final String os) {
+        return Arrays.stream(Os.values())
+            .filter(value -> value.getDetectValue().equalsIgnoreCase(os))
+            .findFirst()
+            .orElseThrow(() -> new NoSuchElementException("Unknown os: '" + os + "'"));
+    }
+
+    /**
+     * Return operation system detect string representative.
+     *
+     * @return An operation system detect string representative
+     */
+    public String getDetectValue() {
+        return detectValue;
     }
 
     /**

@@ -36,7 +36,7 @@ public class FirefoxConfig implements CommonConfig {
         requireNonNull(os);
 
         final String name = "geckodriver";
-        return os == Os.windows
+        return os == Os.WINDOWS
             ? String.format("%s.%s", name, Extension.EXE.getValue())
             : name;
     }
@@ -61,14 +61,14 @@ public class FirefoxConfig implements CommonConfig {
      * {@inheritDoc}
      * <br>
      * <br>
-     * Lock with {@code "macos"} value for {@link Os#osx} operation system.
+     * Lock with {@code "macos"} value for {@link Os#OSX} operation system.
      */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {
         requireNonNull(os);
         requireNonNull(architecture);
 
-        return os == Os.osx
+        return os == Os.OSX
             ? "macos"
             : os.getValue() + architecture.getValue();
     }
@@ -102,7 +102,7 @@ public class FirefoxConfig implements CommonConfig {
     public Extension getArchiveExtension(final Os os) {
         requireNonNull(os);
 
-        return os == Os.windows
+        return os == Os.WINDOWS
             ? Extension.ZIP
             : Extension.TAR_GZ;
     }

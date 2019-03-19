@@ -58,10 +58,10 @@ public class InternetExplorerConfig implements CommonConfig {
      * {@inheritDoc}
      * <br>
      * <br>
-     * Lock with {@link Os#windows} and {@link Architecture#x86_32} values.
+     * Lock with {@link Os#WINDOWS} and {@link Architecture#X_86_32} values.
      */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {
-        return String.format("%s%s", Os.windows.getValue(), Architecture.x86_32.getValue());
+        return String.format("%s%s", Os.WINDOWS.getValue(), Architecture.X_86_32.getValue());
     }
 }

@@ -36,7 +36,7 @@ public class OperaConfig implements CommonConfig {
         requireNonNull(os);
 
         final String name = "operadriver";
-        return os == Os.windows
+        return os == Os.WINDOWS
             ? String.format("%s.%s", name, Extension.EXE.getValue())
             : name;
     }
@@ -61,15 +61,15 @@ public class OperaConfig implements CommonConfig {
      * {@inheritDoc}
      * <br>
      * <br>
-     * Lock architecture with {@link Architecture#x86_32} value for {@link Os#windows} operation system.
+     * Lock architecture with {@link Architecture#X_86_32} value for {@link Os#WINDOWS} operation system.
      */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {
         requireNonNull(os);
         requireNonNull(architecture);
 
-        final Architecture outArchitecture = os == Os.windows
-            ? Architecture.x86_32
+        final Architecture outArchitecture = os == Os.WINDOWS
+            ? Architecture.X_86_32
             : architecture;
         return String.format("%s%s", os.getValue(), outArchitecture.getValue());
     }
