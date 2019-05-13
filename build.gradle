@@ -60,7 +60,7 @@ repositories {
 
 dependencies {
     api("org.apache.logging.log4j:log4j-api:$log4j2Version")
-    implementation("org.jsoup:jsoup:1.11.3")
+    implementation("org.jsoup:jsoup:1.12.1")
     implementation("kr.motd.maven:os-maven-plugin:1.6.2")
     implementation("org.apache.commons:commons-compress:1.18")
     testImplementation("org.assertj:assertj-core:3.12.2")
