@@ -71,6 +71,6 @@ public final class OsDetector extends Detector {
      */
     @Override
     protected void logProperty(final String name, final String value) {
-        logger.info(name + "=" + value);
+        logger.info("{}={}", name, value);
     }
 }
