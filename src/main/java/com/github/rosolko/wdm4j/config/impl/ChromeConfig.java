@@ -77,9 +77,8 @@ public class ChromeConfig implements CommonConfig {
      */
     @Override
     public String getLatestVersion() {
-        final Document document;
         try {
-            document = Jsoup.connect("https://chromedriver.storage.googleapis.com/LATEST_RELEASE_74").get();
+            final Document document = Jsoup.connect("https://chromedriver.storage.googleapis.com/LATEST_RELEASE_74").get();
             final Element element = document.selectFirst("body");
             return element.text();
         } catch (final IOException e) {

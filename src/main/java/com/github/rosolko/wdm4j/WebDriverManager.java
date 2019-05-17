@@ -7,9 +7,9 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 import com.github.rosolko.wdm4j.config.CommonConfig;
 import com.github.rosolko.wdm4j.config.impl.ChromeConfig;
-import com.github.rosolko.wdm4j.config.impl.EdgeConfig;
 import com.github.rosolko.wdm4j.config.impl.FirefoxConfig;
 import com.github.rosolko.wdm4j.config.impl.InternetExplorerConfig;
+import com.github.rosolko.wdm4j.config.impl.LegacyEdgeConfig;
 import com.github.rosolko.wdm4j.config.impl.OperaConfig;
 import com.github.rosolko.wdm4j.config.impl.PhantomJsConfig;
 import com.github.rosolko.wdm4j.enums.Architecture;
@@ -83,7 +83,7 @@ public final class WebDriverManager {
      * This case you can use default configuration implementation from {@link com.github.rosolko.wdm4j.config.impl}
      * package as well as your own configuration implementation of {@link CommonConfig}.
      * <br>
-     * Available predefined configurations: {@link ChromeConfig}, {@link EdgeConfig}, {@link FirefoxConfig},
+     * Available predefined configurations: {@link ChromeConfig}, {@link LegacyEdgeConfig}, {@link FirefoxConfig},
      * {@link InternetExplorerConfig}, {@link OperaConfig}, {@link PhantomJsConfig}.
      *
      * @param config A configuration upon which the setup will be based

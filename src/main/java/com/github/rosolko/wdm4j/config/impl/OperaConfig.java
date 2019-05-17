@@ -73,9 +73,8 @@ public class OperaConfig implements CommonConfig {
      */
     @Override
     public String getLatestVersion() {
-        final Document document;
         try {
-            document = Jsoup.connect("https://github.com/operasoftware/operachromiumdriver/releases").get();
+            final Document document = Jsoup.connect("https://github.com/operasoftware/operachromiumdriver/releases").get();
             final Element element = document.selectFirst(".release-header .f1 a");
             return element.text();
         } catch (final IOException e) {

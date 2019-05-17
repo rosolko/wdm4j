@@ -1,31 +1,23 @@
 package com.github.rosolko.wdm4j.config.impl;
 
-import java.io.IOException;
-
 import com.github.rosolko.wdm4j.config.CommonConfig;
 import com.github.rosolko.wdm4j.enums.Architecture;
 import com.github.rosolko.wdm4j.enums.Extension;
 import com.github.rosolko.wdm4j.enums.Os;
-import com.github.rosolko.wdm4j.exception.WebDriverManagerException;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-
-import static org.apache.commons.lang3.StringUtils.split;
 
 /**
- * Edge configuration.
+ * Legacy Edge configuration.
  *
  * @author Aliaksandr Rasolka
  * @since 1.0.0
  */
-public class EdgeConfig implements CommonConfig {
+public class LegacyEdgeConfig implements CommonConfig {
     /**
      * {@inheritDoc}
      */
     @Override
     public String getBrowserName() {
-        return "edge";
+        return "legacy_edge";
     }
 
     /**
@@ -33,7 +25,7 @@ public class EdgeConfig implements CommonConfig {
      */
     @Override
     public String getBinaryName() {
-        return "msedgedriver";
+        return "MicrosoftWebDriver";
     }
 
     /**
@@ -41,7 +33,7 @@ public class EdgeConfig implements CommonConfig {
      */
     @Override
     public String getBinaryNameWithExtension(final Os os) {
-        return "msedgedriver.exe";
+        return "MicrosoftWebDriver.exe";
     }
 
     /**
@@ -49,7 +41,7 @@ public class EdgeConfig implements CommonConfig {
      */
     @Override
     public String getUrlPattern() {
-        return "https://az813057.vo.msecnd.net/webdriver/msedgedriver_{platform}/msedgedriver.exe";
+        return "https://download.microsoft.com/download/F/8/A/F8AF50AB-3C3A-4BC4-8773-DC27B32988DD/MicrosoftWebDriver.exe";
     }
 
     /**
@@ -62,17 +54,13 @@ public class EdgeConfig implements CommonConfig {
 
     /**
      * {@inheritDoc}
+     * <br>
+     * <br>
+     * Lock with {@code "6.17134"} value.
      */
     @Override
     public String getLatestVersion() {
-        try {
-            final Document document = Jsoup.connect("https://msedgecdn.azurewebsites.net/webdriver/index.html").get();
-            final Element element = document.selectFirst("body > h1");
-            final String[] parts = split(element.text(), " ");
-            return parts[parts.length - 1];
-        } catch (final IOException e) {
-            throw new WebDriverManagerException("Unable to get latest edge webdriver binary version", e);
-        }
+        return "6.17134";
     }
 
     /**
@@ -88,11 +76,12 @@ public class EdgeConfig implements CommonConfig {
 
     /**
      * {@inheritDoc}
+     * <br>
+     * <br>
+     * Lock with {@link Os#WINDOWS} and {@link Architecture#X_86_64} values.
      */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {
-        return architecture == Architecture.X_86_32
-            ? "x86"
-            : "x64";
+        return String.format("%s%s", Os.WINDOWS.getValue(), Architecture.X_86_64.getValue());
     }
 }

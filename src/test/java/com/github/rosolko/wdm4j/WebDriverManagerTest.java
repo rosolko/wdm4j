@@ -8,6 +8,7 @@ import com.github.rosolko.wdm4j.config.impl.ChromeConfig;
 import com.github.rosolko.wdm4j.config.impl.EdgeConfig;
 import com.github.rosolko.wdm4j.config.impl.FirefoxConfig;
 import com.github.rosolko.wdm4j.config.impl.InternetExplorerConfig;
+import com.github.rosolko.wdm4j.config.impl.LegacyEdgeConfig;
 import com.github.rosolko.wdm4j.config.impl.OperaConfig;
 import com.github.rosolko.wdm4j.config.impl.PhantomJsConfig;
 import com.github.rosolko.wdm4j.enums.Architecture;
@@ -42,6 +43,7 @@ class WebDriverManagerTest {
             new EdgeConfig(),
             new FirefoxConfig(),
             new InternetExplorerConfig(),
+            new LegacyEdgeConfig(),
             new OperaConfig(),
             new PhantomJsConfig()
         );
