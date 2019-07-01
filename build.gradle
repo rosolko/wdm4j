@@ -64,7 +64,7 @@ dependencies {
     implementation("kr.motd.maven:os-maven-plugin:1.6.2")
     implementation("org.apache.commons:commons-compress:1.18")
     testImplementation("org.assertj:assertj-core:3.12.2")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.5.0-RC2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.5.0")
     testRuntimeOnly("org.apache.logging.log4j:log4j-core:$log4j2Version")
     testRuntimeOnly("org.apache.logging.log4j:log4j-jul:$log4j2Version")
     testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:$log4j2Version")
