@@ -40,6 +40,6 @@ class ChromeConfigTest {
     void ableToGetLatestVersion() {
         final String latestVersion = config.getLatestVersion();
         assertThat(latestVersion).isNotBlank();
-        assertThat(latestVersion).matches("^\\d+\\.\\d+.\\d+.\\d+$");
+        assertThat(latestVersion).matches("^\\d+.\\d+.\\d+.\\d+$");
     }
 }

@@ -1,5 +1,6 @@
 package com.github.rosolko.wdm4j.config.impl;
 
+import com.github.rosolko.wdm4j.WebDriverManager;
 import com.github.rosolko.wdm4j.enums.Architecture;
 import com.github.rosolko.wdm4j.enums.Os;
 import org.junit.jupiter.api.BeforeAll;
@@ -7,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,23 +16,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Default firefox config test")
 class EdgeConfigTest {
     private EdgeConfig config;
-    private Os os;
+    private Architecture architecture;
 
     @BeforeAll
     @DisplayName("Create default edge config")
     void setUp() {
         config = new EdgeConfig();
-        os = Os.detect();
+        architecture = Architecture.detect();
     }
 
     @ParameterizedTest
-    @CsvSource({"X_86_32,x86", "X_86_64,x64"})
+    @EnumSource(Os.class)
     @DisplayName("Get platform based on os")
-    void ableToGetPlatform(final String architectureString, final String expectedPlatform) {
-        final Architecture architecture = Architecture.valueOf(architectureString);
+    void ableToGetPlatform(final Os os) {
+        final Architecture expectedArchitecture = os == Os.OSX ? Architecture.X_86_64 : architecture;
         final String platform = config.getPlatform(os, architecture);
         assertThat(platform)
-            .isEqualTo(expectedPlatform);
+            .startsWith(os.getValue())
+            .endsWith(expectedArchitecture.getValue());
     }
 
     @Test
@@ -39,6 +41,6 @@ class EdgeConfigTest {
     void ableToGetLatestVersion() {
         final String latestVersion = config.getLatestVersion();
         assertThat(latestVersion).isNotBlank();
-        assertThat(latestVersion).matches("^\\d+\\.\\d+\\.\\d+.\\d+$");
+        assertThat(latestVersion).matches("^\\d+.\\d+.\\d+.\\d+$");
     }
 }

@@ -65,7 +65,7 @@ public class FirefoxConfig implements CommonConfig {
 
         return os == Os.OSX
             ? "macos"
-            : os.getValue() + architecture.getValue();
+            : String.format("%s%s", os.getValue(), architecture.getValue());
     }
 
     /**

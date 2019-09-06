@@ -8,7 +8,6 @@ import com.github.rosolko.wdm4j.enums.Os;
 import com.github.rosolko.wdm4j.exception.WebDriverManagerException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
 import static java.util.Objects.requireNonNull;
 
@@ -79,8 +78,7 @@ public class ChromeConfig implements CommonConfig {
     public String getLatestVersion() {
         try {
             final Document document = Jsoup.connect("https://chromedriver.storage.googleapis.com/LATEST_RELEASE").get();
-            final Element element = document.selectFirst("body");
-            return element.text();
+            return document.body().text();
         } catch (final IOException e) {
             throw new WebDriverManagerException("Unable to get latest chrome webdriver binary version", e);
         }
