@@ -1,6 +1,5 @@
 package com.github.rosolko.wdm4j.config.impl;
 
-import com.github.rosolko.wdm4j.WebDriverManager;
 import com.github.rosolko.wdm4j.enums.Architecture;
 import com.github.rosolko.wdm4j.enums.Os;
 import org.junit.jupiter.api.BeforeAll;
@@ -29,10 +28,11 @@ class EdgeConfigTest {
     @EnumSource(Os.class)
     @DisplayName("Get platform based on os")
     void ableToGetPlatform(final Os os) {
+        final Os expectedOs = os == Os.LINUX ? Os.OSX : os;
         final Architecture expectedArchitecture = os == Os.OSX ? Architecture.X_86_64 : architecture;
         final String platform = config.getPlatform(os, architecture);
         assertThat(platform)
-            .startsWith(os.getValue())
+            .startsWith(expectedOs.getValue())
             .endsWith(expectedArchitecture.getValue());
     }
 
