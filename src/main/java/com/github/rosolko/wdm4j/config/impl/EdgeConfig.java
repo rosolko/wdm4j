@@ -69,16 +69,28 @@ public class EdgeConfig implements CommonConfig {
      * <br>
      * Lock architectures based on operation system.
      * <br>
-     * For mac - {@link Architecture#X_86_64}
+     * For mac/linux - {@link Architecture#X_86_64}
      */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {
         requireNonNull(os);
         requireNonNull(architecture);
 
-        final Architecture outArchitecture = os == Os.OSX
-            ? Architecture.X_86_64
-            : architecture;
-        return String.format("%s%s", os.getValue(), outArchitecture.getValue());
+        Os outOs;
+        Architecture outArchitecture;
+        switch (os) {
+            case WINDOWS:
+                outOs = Os.WINDOWS;
+                outArchitecture = architecture;
+                break;
+            case LINUX:
+            case OSX:
+                outOs = Os.OSX;
+                outArchitecture = Architecture.X_86_64;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + os);
+        }
+        return String.format("%s%s", outOs.getValue(), outArchitecture.getValue());
     }
 }
