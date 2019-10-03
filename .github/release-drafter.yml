@@ -1,5 +1,10 @@
 name-template: 'v$NEXT_PATCH_VERSION'
 tag-template: '$NEXT_PATCH_VERSION'
+template: |
+  ## Changes
+
+  $CHANGES
+
 categories:
   - title: '🚀 Features'
     label: 'feature'
@@ -9,8 +14,3 @@ categories:
     label: 'chore'
   - title: 📦 Dependency updates
     label: dependencies
-change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
-template: |
-  ## Changes
-
-  $CHANGES
