@@ -46,14 +46,14 @@ public enum Architecture {
      * @see OsDetector#getArch
      */
     public static Architecture detect() {
-        return Architecture.ofValue(OsDetector.getInstance().getArch());
+        return ofValue(OsDetector.getInstance().getArch());
     }
 
     private static Architecture ofValue(final String architecture) {
-        return Arrays.stream(Architecture.values())
+        return Arrays.stream(values())
             .filter(value -> value.getDetectValue().equalsIgnoreCase(architecture))
             .findFirst()
-            .orElseThrow(() -> new NoSuchElementException("Unknown architecture: '" + architecture + "'"));
+            .orElseThrow(() -> new NoSuchElementException(String.format("Unknown architecture: '%s'", architecture)));
     }
 
     /**

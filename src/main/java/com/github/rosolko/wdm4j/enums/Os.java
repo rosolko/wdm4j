@@ -46,14 +46,14 @@ public enum Os {
      * @see OsDetector#getOs
      */
     public static Os detect() {
-        return Os.ofValue(OsDetector.getInstance().getOs());
+        return ofValue(OsDetector.getInstance().getOs());
     }
 
     private static Os ofValue(final String os) {
-        return Arrays.stream(Os.values())
+        return Arrays.stream(values())
             .filter(value -> value.getDetectValue().equalsIgnoreCase(os))
             .findFirst()
-            .orElseThrow(() -> new NoSuchElementException("Unknown os: '" + os + "'"));
+            .orElseThrow(() -> new NoSuchElementException(String.format("Unknown os: '%s'", os)));
     }
 
     /**
