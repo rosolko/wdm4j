@@ -5,21 +5,16 @@ apply plugin: "maven-publish"
 apply plugin: "signing"
 apply plugin: "com.jfrog.bintray"
 
-tasks.register("sourcesJar", Jar) {
-    from sourceSets.main.allJava
-    classifier "sources"
-}
-
-tasks.register("javadocJar", Jar) {
-    from javadoc
-    classifier "javadoc"
-}
-
 def buildTimeAndDate = OffsetDateTime.now()
 
 ext {
     buildDate = DateTimeFormatter.ISO_LOCAL_DATE.format(buildTimeAndDate)
     buildTime = DateTimeFormatter.ofPattern("HH:mm:ss.SSSZ").format(buildTimeAndDate)
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
 
 jar {
@@ -41,8 +36,6 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
-            artifact sourcesJar
-            artifact javadocJar
             pom {
                 name = "wdm4j"
                 description = "WebDriver binary manager for java"
