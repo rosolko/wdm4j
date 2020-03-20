@@ -24,7 +24,7 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 
 ext {
     encoding = StandardCharsets.UTF_8.toString()
-    log4j2Version = "2.13.0"
+    log4j2Version = "2.13.1"
 }
 
 tasks.withType(JavaCompile) {
