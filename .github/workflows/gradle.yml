@@ -22,7 +22,7 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build and check with gradle
-      run: ./gradlew check --no-daemon --no-build-cache --console=plain
+      run: ./gradlew check sonarqube --no-daemon --no-build-cache --console=plain
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@v1.3
       env:
