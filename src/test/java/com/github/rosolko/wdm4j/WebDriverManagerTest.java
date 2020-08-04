@@ -79,7 +79,7 @@ class WebDriverManagerTest {
     @Test
     @DisplayName("Setup binary with specific version")
     void ableToSetUpBinaryWithSpecificVersion() {
-        final String version = "v0.23.0";
+        final String version = "0.23.0";
 
         final CommonConfig config = new FirefoxConfig();
         final String platform = config.getPlatform(os, architecture);
