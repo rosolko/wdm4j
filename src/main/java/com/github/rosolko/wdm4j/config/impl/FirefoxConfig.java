@@ -76,7 +76,7 @@ public class FirefoxConfig implements CommonConfig {
         try {
             final Document document = Jsoup.connect("https://github.com/mozilla/geckodriver/releases").get();
             final Element element = document.selectFirst(".release-header .f1 a");
-            return element.text();
+            return element.text().replace("v", "");
         } catch (final IOException e) {
             throw new WebDriverManagerException("Unable to get latest firefox webdriver binary version", e);
         }
