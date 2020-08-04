@@ -41,7 +41,7 @@ public class FirefoxConfig implements CommonConfig {
      */
     @Override
     public String getUrlPattern() {
-        return "https://github.com/mozilla/geckodriver/releases/download/{version}/geckodriver-{version}-{platform}.{extension}";
+        return "https://github.com/mozilla/geckodriver/releases/download/v{version}/geckodriver-v{version}-{platform}.{extension}";
     }
 
     /**
