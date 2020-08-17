@@ -20,7 +20,7 @@ description = "WebDriver manager for java"
 apply from: rootProject.file("gradle/code-quality.gradle")
 apply from: rootProject.file("gradle/publish.gradle")
 
-sourceCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_11
 
 ext {
     encoding = StandardCharsets.UTF_8.toString()
