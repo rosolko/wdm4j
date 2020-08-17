@@ -1,7 +1,6 @@
 # WebDriver manager for java
 
-[![](https://travis-ci.com/rosolko/wdm4j.svg?branch=master)](https://travis-ci.com/rosolko/wdm4j)
-![Java CI with Gradle](https://github.com/rosolko/wdm4j/workflows/Java%20CI%20with%20Gradle/badge.svg)
+![ci](https://github.com/rosolko/wdm4j/workflows/ci/badge.svg)
 [![](https://sonarcloud.io/api/project_badges/measure?project=rosolko_wdm4j&metric=alert_status)](https://sonarcloud.io/dashboard?id=rosolko_wdm4j)
 [![](https://sonarcloud.io/api/project_badges/measure?project=rosolko_wdm4j&metric=coverage)](https://sonarcloud.io/dashboard?id=rosolko_wdm4j)
 [![](https://api.bintray.com/packages/rosolko/maven/wdm4j/images/download.svg)](https://bintray.com/rosolko/maven/wdm4j/_latestVersion)
