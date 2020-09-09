@@ -28,8 +28,8 @@ class ChromeConfigTest {
     @EnumSource(Os.class)
     @DisplayName("Get platform based on os")
     void ableToGetPlatform(final Os os) {
-        final var outArchitecture = os == Os.WINDOWS ? Architecture.X_86_32 : Architecture.X_86_64;
-        final var platform = config.getPlatform(os, architecture);
+        final Architecture outArchitecture = os == Os.WINDOWS ? Architecture.X_86_32 : Architecture.X_86_64;
+        final String platform = config.getPlatform(os, architecture);
         assertThat(platform)
             .startsWith(os.getValue())
             .endsWith(outArchitecture.getValue());
@@ -38,7 +38,7 @@ class ChromeConfigTest {
     @Test
     @DisplayName("Get latest version")
     void ableToGetLatestVersion() {
-        final var latestVersion = config.getLatestVersion();
+        final String latestVersion = config.getLatestVersion();
         assertThat(latestVersion).isNotBlank();
         assertThat(latestVersion).matches("^\\d+.\\d+.\\d+.\\d+$");
     }

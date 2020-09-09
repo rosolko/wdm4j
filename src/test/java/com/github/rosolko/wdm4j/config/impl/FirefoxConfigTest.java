@@ -29,8 +29,8 @@ class FirefoxConfigTest {
     @EnumSource(Os.class)
     @DisplayName("Get platform based on os")
     void ableToGetPlatform(final Os os) {
-        final var expectedArchitecture = os == Os.OSX ? "" : architecture.getValue();
-        final var platform = config.getPlatform(os, architecture);
+        final String expectedArchitecture = os == Os.OSX ? "" : architecture.getValue();
+        final String platform = config.getPlatform(os, architecture);
         assertThat(platform)
             .startsWith(os.getValue())
             .endsWith(expectedArchitecture);
@@ -39,7 +39,7 @@ class FirefoxConfigTest {
     @Test
     @DisplayName("Get latest version")
     void ableToGetLatestVersion() {
-        final var latestVersion = config.getLatestVersion();
+        final String latestVersion = config.getLatestVersion();
         assertThat(latestVersion).isNotBlank();
         assertThat(latestVersion).matches("^\\d+\\.\\d+.\\d+$");
     }
@@ -48,8 +48,8 @@ class FirefoxConfigTest {
     @EnumSource(Os.class)
     @DisplayName("Get archive extension")
     void ableToGetArchiveExtension(final Os os) {
-        final var extension = os == Os.WINDOWS ? Extension.ZIP : Extension.TAR_GZ;
-        final var archiveExtension = config.getArchiveExtension(os);
+        final Extension extension = os == Os.WINDOWS ? Extension.ZIP : Extension.TAR_GZ;
+        final Extension archiveExtension = config.getArchiveExtension(os);
         assertThat(archiveExtension).isEqualTo(extension);
     }
 }

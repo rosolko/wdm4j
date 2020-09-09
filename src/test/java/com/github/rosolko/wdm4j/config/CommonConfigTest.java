@@ -18,10 +18,10 @@ class CommonConfigTest {
     @EnumSource(Os.class)
     @DisplayName("Get binary name based on os")
     void ableToGetBinaryName(final Os os) {
-        final var config = new ChromeConfig();
-        final var binaryName = config.getBinaryName();
-        final var extension = os == Os.WINDOWS ? Extension.EXE.getValue() : "";
-        final var binaryNameWithExtension = config.getBinaryNameWithExtension(os);
+        final ChromeConfig config = new ChromeConfig();
+        final String binaryName = config.getBinaryName();
+        final String extension = os == Os.WINDOWS ? Extension.EXE.getValue() : "";
+        final String binaryNameWithExtension = config.getBinaryNameWithExtension(os);
         assertThat(binaryNameWithExtension)
             .startsWith(binaryName)
             .endsWith(extension);

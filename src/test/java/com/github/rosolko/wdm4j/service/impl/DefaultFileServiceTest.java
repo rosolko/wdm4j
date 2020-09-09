@@ -31,24 +31,24 @@ class DefaultFileServiceTest {
     @Test
     @DisplayName("Get archive temp path by archive name")
     void ableToGetArchiveTempPath() throws IOException {
-        final var archiveTempPath = Files.createTempFile("chromedriver", ".tar.gz");
-        final var archiveName = archiveTempPath.getFileName().toString();
+        final Path archiveTempPath = Files.createTempFile("chromedriver", ".tar.gz");
+        final String archiveName = archiveTempPath.getFileName().toString();
 
-        final var result = fileService.getArchiveTempPath(archiveName);
+        final Path result = fileService.getArchiveTempPath(archiveName);
         assertThat(result).isEqualTo(archiveTempPath);
     }
 
     @Test
     @DisplayName("Get binary path based on browser name, binary version, platform and binary name")
     void ableToGetBinaryPath() {
-        final var browserName = "testBrowserName";
-        final var version = "4.1.01235";
-        final var platform = "windows64";
-        final var binaryName = "testBinary.exe";
-        final var expectedPath = Paths.get(System.getProperty("user.dir"),
+        final String browserName = "testBrowserName";
+        final String version = "4.1.01235";
+        final String platform = "windows64";
+        final String binaryName = "testBinary.exe";
+        final Path expectedPath = Paths.get(System.getProperty("user.dir"),
             "build", "binaries", browserName, version, platform, binaryName);
 
-        final var binaryPath = fileService.getBinaryPath(browserName, version, platform, binaryName);
+        final Path binaryPath = fileService.getBinaryPath(browserName, version, platform, binaryName);
         assertThat(binaryPath).isEqualTo(expectedPath);
     }
 }

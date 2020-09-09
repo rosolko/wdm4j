@@ -28,10 +28,10 @@ class PhantomJsConfigTest {
     @EnumSource(Os.class)
     @DisplayName("Get platform based on os")
     void ableToGetPlatform(final Os os) {
-        final var expectedOs = os == Os.OSX ? "macosx" : os.getDetectValue();
-        final var outArchitecture = os == Os.LINUX ? architecture.getDetectValue() : "";
+        final String expectedOs = os == Os.OSX ? "macosx" : os.getDetectValue();
+        final String outArchitecture = os == Os.LINUX ? architecture.getDetectValue() : "";
 
-        final var platform = config.getPlatform(os, architecture);
+        final String platform = config.getPlatform(os, architecture);
         assertThat(platform)
             .startsWith(expectedOs)
             .endsWith(outArchitecture);
@@ -41,8 +41,8 @@ class PhantomJsConfigTest {
     @EnumSource(Os.class)
     @DisplayName("Get archive extension")
     void ableToGetArchiveExtension(final Os os) {
-        final var extension = os == Os.LINUX ? Extension.TAR_BZ2 : Extension.ZIP;
-        final var archiveExtension = config.getArchiveExtension(os);
+        final Extension extension = os == Os.LINUX ? Extension.TAR_BZ2 : Extension.ZIP;
+        final Extension archiveExtension = config.getArchiveExtension(os);
         assertThat(archiveExtension).isEqualTo(extension);
     }
 }

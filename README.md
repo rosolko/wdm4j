@@ -20,7 +20,7 @@ This small library aimed to automate the Selenium WebDriver binaries management 
     }
 
 	dependencies {
-        implementation 'com.github.rosolko:wdm4j:1.1.2'
+        implementation 'com.github.rosolko:wdm4j:1.1.1'
 	}
 
 ## Using

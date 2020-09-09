@@ -38,10 +38,10 @@ class DefaultArchiveServiceTest {
     @Test
     @DisplayName("Download archive from URL to archive path")
     void ableToDownloadArchive(@TempDir final Path tempDir) throws MalformedURLException {
-        final var url = new URL("https://chromedriver.storage.googleapis.com/2.27/chromedriver_win32.zip");
-        final var archivePath = tempDir.resolve("chromedriver_win32.zip");
+        final URL url = new URL("https://chromedriver.storage.googleapis.com/2.27/chromedriver_win32.zip");
+        final Path archivePath = tempDir.resolve("chromedriver_win32.zip");
 
-        final var result = archiveService.download(url, archivePath);
+        final Path result = archiveService.download(url, archivePath);
         assertThat(result)
             .exists()
             .isEqualTo(archivePath);
@@ -50,22 +50,22 @@ class DefaultArchiveServiceTest {
     @Test
     @DisplayName("Extract variable from archive by extension using binary name to binary path")
     void ableToExtractEntryFromArchive(@TempDir final Path tempDir) throws IOException {
-        final var archive = Files.createTempFile("chromedriver", ".zip");
-        final var binary = Files.createTempFile("chromedriver", ".txt");
-        final var data = Files.readAllBytes(binary);
-        final var binaryName = binary.getFileName().toString();
-        try (var outputStream = Files.newOutputStream(archive)) {
-            try (var zipArchiveOutputStream = new ZipArchiveOutputStream(outputStream)) {
-                final var entry = new ZipArchiveEntry(binaryName);
+        final Path archive = Files.createTempFile("chromedriver", ".zip");
+        final Path binary = Files.createTempFile("chromedriver", ".txt");
+        final byte[] data = Files.readAllBytes(binary);
+        final String binaryName = binary.getFileName().toString();
+        try (OutputStream outputStream = Files.newOutputStream(archive)) {
+            try (ZipArchiveOutputStream zipArchiveOutputStream = new ZipArchiveOutputStream(outputStream)) {
+                final ZipArchiveEntry entry = new ZipArchiveEntry(binaryName);
                 entry.setSize(data.length);
                 zipArchiveOutputStream.putArchiveEntry(entry);
                 zipArchiveOutputStream.write(data);
                 zipArchiveOutputStream.closeArchiveEntry();
             }
         }
-        final var binaryPath = tempDir.resolve(binaryName);
+        final Path binaryPath = tempDir.resolve(binaryName);
 
-        final var result = archiveService.extract(archive, binaryName, binaryPath, Extension.ZIP);
+        final Path result = archiveService.extract(archive, binaryName, binaryPath, Extension.ZIP);
         assertThat(result)
             .exists()
             .isEqualTo(binaryPath);
@@ -74,8 +74,8 @@ class DefaultArchiveServiceTest {
     @Test
     @DisplayName("Remove archive by path")
     void ableToRemoveArchive() throws IOException {
-        final var archive = File.createTempFile("archive", ".zip");
-        final var archivePath = archive.toPath();
+        final File archive = File.createTempFile("archive", ".zip");
+        final Path archivePath = archive.toPath();
 
         archiveService.remove(archivePath);
         assertThat(archivePath).doesNotExist();
