@@ -62,15 +62,15 @@ class WebDriverManagerTest {
     @MethodSource("createConfigs")
     @DisplayName("Setup binary for specific config")
     void ableToSetUpBinary(final CommonConfig config) {
-        final String version = config.getLatestVersion();
-        final String platform = config.getPlatform(os, architecture);
-        final String binaryName = config.getBinaryNameWithExtension(os);
-        final Path binaryPath = fileService.getBinaryPath(config.getBrowserName(), version, platform, binaryName);
-        final String variable = config.getBinaryVariable();
+        final var version = config.getLatestVersion();
+        final var platform = config.getPlatform(os, architecture);
+        final var binaryName = config.getBinaryNameWithExtension(os);
+        final var binaryPath = fileService.getBinaryPath(config.getBrowserName(), version, platform, binaryName);
+        final var variable = config.getBinaryVariable();
 
         webDriverManager.setup(config);
 
-        final String systemVariable = System.getProperty(variable);
+        final var systemVariable = System.getProperty(variable);
         assertThat(binaryPath).exists();
         assertThat(systemVariable).isNotEmpty();
         assertThat(systemVariable).isEqualTo(binaryPath.toString());
@@ -79,17 +79,17 @@ class WebDriverManagerTest {
     @Test
     @DisplayName("Setup binary with specific version")
     void ableToSetUpBinaryWithSpecificVersion() {
-        final String version = "0.23.0";
+        final var version = "0.23.0";
 
         final CommonConfig config = new FirefoxConfig();
-        final String platform = config.getPlatform(os, architecture);
-        final String binaryName = config.getBinaryNameWithExtension(os);
-        final Path binaryPath = fileService.getBinaryPath(config.getBrowserName(), version, platform, binaryName);
-        final String variable = config.getBinaryVariable();
+        final var platform = config.getPlatform(os, architecture);
+        final var binaryName = config.getBinaryNameWithExtension(os);
+        final var binaryPath = fileService.getBinaryPath(config.getBrowserName(), version, platform, binaryName);
+        final var variable = config.getBinaryVariable();
 
         webDriverManager.setup(config, version);
 
-        final String systemVariable = System.getProperty(variable);
+        final var systemVariable = System.getProperty(variable);
         assertThat(binaryPath).exists();
         assertThat(systemVariable).isNotEmpty();
         assertThat(systemVariable).isEqualTo(binaryPath.toString());

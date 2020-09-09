@@ -29,11 +29,11 @@ class DefaultVariableServiceTest {
     @Test
     @DisplayName("Set system property by name and path")
     void ableToSetBinarySystemProperty(@TempDir final Path tempPath) {
-        final String tempBinaryProperty = "temp.prop";
-        final Path tempBinaryPath = tempPath.resolve("binary.exe");
+        final var tempBinaryProperty = "temp.prop";
+        final var tempBinaryPath = tempPath.resolve("binary.exe");
 
         variableService.setSystemProperty(tempBinaryProperty, tempBinaryPath);
-        final String actual = System.getProperty(tempBinaryProperty);
+        final var actual = System.getProperty(tempBinaryProperty);
         assertThat(actual)
             .isNotNull()
             .isEqualTo(tempBinaryPath.toString());

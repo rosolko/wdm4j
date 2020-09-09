@@ -30,21 +30,21 @@ class DefaultUrlServiceTest {
     @Test
     @DisplayName("Build url from pattern based on version, platform and extension")
     void ableToBuildDownloadUrl() {
-        final String pattern = "https://some-host.html/{version}/{platform}.{extension}";
-        final String version = "v0.0.7";
-        final String platform = "osx";
-        final String extension = Extension.TAR_BZ2.getValue();
+        final var pattern = "https://some-host.html/{version}/{platform}.{extension}";
+        final var version = "v0.0.7";
+        final var platform = "osx";
+        final var extension = Extension.TAR_BZ2.getValue();
 
-        final URL result = urlService.buildUrl(pattern, version, platform, Extension.TAR_BZ2);
+        final var result = urlService.buildUrl(pattern, version, platform, Extension.TAR_BZ2);
         assertThat(result).hasToString(String.format("https://some-host.html/%s/%s.%s", version, platform, extension));
     }
 
     @Test
     @DisplayName("Get file name from url")
     void ableToGetFileNameFromUrl() throws MalformedURLException {
-        final URL url = new URL("https://some-host.html/some-file-name.tar");
+        final var url = new URL("https://some-host.html/some-file-name.tar");
 
-        final String result = urlService.getFileNameFromUrl(url);
+        final var result = urlService.getFileNameFromUrl(url);
         assertThat(result).isEqualTo("some-file-name.tar");
     }
 }

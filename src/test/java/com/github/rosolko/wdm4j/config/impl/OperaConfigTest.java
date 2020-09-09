@@ -28,8 +28,8 @@ class OperaConfigTest {
     @EnumSource(Os.class)
     @DisplayName("Get platform based on os")
     void ableToGetPlatform(final Os os) {
-        final Architecture expectedArchitecture = os == Os.WINDOWS ? Architecture.X_86_32 : architecture;
-        final String platform = config.getPlatform(os, architecture);
+        final var expectedArchitecture = os == Os.WINDOWS ? Architecture.X_86_32 : architecture;
+        final var platform = config.getPlatform(os, architecture);
         assertThat(platform)
             .startsWith(os.getValue())
             .endsWith(expectedArchitecture.getValue());
@@ -38,7 +38,7 @@ class OperaConfigTest {
     @Test
     @DisplayName("Get latest version")
     void ableToGetLatestVersion() {
-        final String latestVersion = config.getLatestVersion();
+        final var latestVersion = config.getLatestVersion();
         assertThat(latestVersion).isNotBlank();
         assertThat(latestVersion).matches("^\\d+.\\d+.\\d+.\\d+$");
     }

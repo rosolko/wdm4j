@@ -28,9 +28,9 @@ class EdgeConfigTest {
     @EnumSource(Os.class)
     @DisplayName("Get platform based on os")
     void ableToGetPlatform(final Os os) {
-        final Os expectedOs = os == Os.LINUX ? Os.OSX : os;
-        final Architecture expectedArchitecture = os == Os.OSX ? Architecture.X_86_64 : architecture;
-        final String platform = config.getPlatform(os, architecture);
+        final var expectedOs = os == Os.LINUX ? Os.OSX : os;
+        final var expectedArchitecture = os == Os.OSX ? Architecture.X_86_64 : architecture;
+        final var platform = config.getPlatform(os, architecture);
         assertThat(platform)
             .startsWith(expectedOs.getValue())
             .endsWith(expectedArchitecture.getValue());
@@ -39,7 +39,7 @@ class EdgeConfigTest {
     @Test
     @DisplayName("Get latest version")
     void ableToGetLatestVersion() {
-        final String latestVersion = config.getLatestVersion();
+        final var latestVersion = config.getLatestVersion();
         assertThat(latestVersion).isNotBlank();
         assertThat(latestVersion).matches("^\\d+.\\d+.\\d+.\\d+$");
     }

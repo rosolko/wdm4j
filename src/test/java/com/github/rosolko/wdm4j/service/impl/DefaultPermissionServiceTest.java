@@ -31,7 +31,7 @@ class DefaultPermissionServiceTest {
     @Test
     @DisplayName("Make binary executable by binary path based on os")
     void ableToMakeBinaryExecutable() throws IOException {
-        final Path binaryPath = Files.createTempFile("chromedriver", ".sh");
+        final var binaryPath = Files.createTempFile("chromedriver", ".sh");
 
         permissionService.makeExecutable(Os.LINUX, binaryPath);
         assertThat(binaryPath).isExecutable();
