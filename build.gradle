@@ -6,7 +6,7 @@ plugins {
     id "java-library"
     id "checkstyle"
     id "pmd"
-//    id "jacoco"
+    id "jacoco"
     id "com.github.ben-manes.versions" version "0.36.0"
     id "com.github.spotbugs" version "4.6.0"
     id "org.sonarqube" version "3.0"
@@ -20,10 +20,9 @@ description = "WebDriver manager for java"
 apply from: rootProject.file("gradle/code-quality.gradle")
 apply from: rootProject.file("gradle/publish.gradle")
 
-//sourceCompatibility = JavaVersion.VERSION_15
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(15)
+        languageVersion = JavaLanguageVersion.of(8)
     }
 }
 
