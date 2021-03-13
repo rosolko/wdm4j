@@ -39,11 +39,11 @@ public class InternetExplorerConfig implements CommonConfig {
      * {@inheritDoc}
      * <br>
      * <br>
-     * Lock with {@code "3.141"} value.
+     * Lock with {@code "3.150"} value.
      */
     @Override
     public String getLatestVersion() {
-        return "3.141";
+        return "3.150";
     }
 
     /**
@@ -51,7 +51,7 @@ public class InternetExplorerConfig implements CommonConfig {
      */
     @Override
     public String getUrlPattern() {
-        return "http://selenium-release.storage.googleapis.com/3.141/IEDriverServer_Win32_3.141.5.zip";
+        return "http://selenium-release.storage.googleapis.com/{version}/IEDriverServer_{platform}_{version}.1.zip";
     }
 
     /**
@@ -70,6 +70,6 @@ public class InternetExplorerConfig implements CommonConfig {
      */
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {
-        return String.format("%s%s", Os.WINDOWS.getValue(), Architecture.X_86_32.getValue());
+        return architecture == Architecture.X_86_32 ? "Win32" : "x64";
     }
 }
