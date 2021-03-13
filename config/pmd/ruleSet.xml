@@ -77,9 +77,9 @@
     <rule ref="category/java/errorprone.xml">
         <exclude name="BeanMembersShouldSerialize"/>
         <exclude name="DataflowAnomalyAnalysis"/>
-        <exclude name="DoNotCallSystemExit"/>
         <exclude name="DoNotHardCodeSDCard"/>
-        <exclude name="InvalidSlf4jMessageFormat"/>
+        <exclude name="DoNotTerminateVM"/>
+        <exclude name="InvalidLogMessageFormat"/>
         <exclude name="JUnitSpelling"/>
         <exclude name="JUnitStaticSuite"/>
         <exclude name="MoreThanOneLogger"/>

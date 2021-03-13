@@ -1,5 +1,5 @@
 checkstyle {
-    toolVersion = "8.37"
+    toolVersion = "8.41"
 }
 
 tasks.withType(Checkstyle) {
@@ -10,7 +10,7 @@ tasks.withType(Checkstyle) {
 }
 
 pmd {
-    toolVersion = "6.29.0"
+    toolVersion = "6.32.0"
     incrementalAnalysis = true
 }
 
