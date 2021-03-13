@@ -72,8 +72,9 @@ class WebDriverManagerTest {
 
         final String systemVariable = System.getProperty(variable);
         assertThat(binaryPath).exists();
-        assertThat(systemVariable).isNotEmpty();
-        assertThat(systemVariable).isEqualTo(binaryPath.toString());
+        assertThat(systemVariable)
+            .isNotEmpty()
+            .isEqualTo(binaryPath.toString());
     }
 
     @Test
@@ -91,7 +92,8 @@ class WebDriverManagerTest {
 
         final String systemVariable = System.getProperty(variable);
         assertThat(binaryPath).exists();
-        assertThat(systemVariable).isNotEmpty();
-        assertThat(systemVariable).isEqualTo(binaryPath.toString());
+        assertThat(systemVariable)
+            .isNotEmpty()
+            .isEqualTo(binaryPath.toString());
     }
 }

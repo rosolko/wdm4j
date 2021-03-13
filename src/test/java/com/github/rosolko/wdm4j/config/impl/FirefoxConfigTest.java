@@ -40,8 +40,9 @@ class FirefoxConfigTest {
     @DisplayName("Get latest version")
     void ableToGetLatestVersion() {
         final String latestVersion = config.getLatestVersion();
-        assertThat(latestVersion).isNotBlank();
-        assertThat(latestVersion).matches("^\\d+\\.\\d+.\\d+$");
+        assertThat(latestVersion)
+            .isNotBlank()
+            .matches("^\\d+\\.\\d+.\\d+$");
     }
 
     @ParameterizedTest
