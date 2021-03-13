@@ -49,3 +49,5 @@ sonarqube {
         property("sonar.projectName", "WebDriver manager for java")
     }
 }
+
+project.tasks["sonarqube"].dependsOn "jacocoTestReport"
