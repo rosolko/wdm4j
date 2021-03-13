@@ -59,7 +59,7 @@ tasks.withType(SpotBugsTask) {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
