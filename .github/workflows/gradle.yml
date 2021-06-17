@@ -26,8 +26,11 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Build and check with gradle
-        run: ./gradlew build sonarqube -Dsonar.projectKey=rosolko_wdm4j -Dsonar.organization=rosolko-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+      - name: Build
+        run: ./gradlew build
+      - name: Sonarqube
+        if: github.ref == 'refs/heads/master'
+        run: ./gradlew sonarqube -Dsonar.projectKey=rosolko_wdm4j -Dsonar.organization=rosolko-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
