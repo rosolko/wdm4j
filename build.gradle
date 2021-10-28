@@ -34,6 +34,7 @@ ext {
 tasks.withType(JavaCompile) {
     options.incremental = true
     options.encoding = encoding
+    options.release = 8
     options.compilerArgs += ["-Xlint"]
 
     options.release = 8
