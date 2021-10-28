@@ -59,9 +59,9 @@ public class PhantomJsConfig implements CommonConfig {
         requireNonNull(os);
         requireNonNull(architecture);
 
-        final String outOs = os == Os.OSX ? "macosx" : os.getDetectValue();
-        final String outArchitecture = os == Os.LINUX ? architecture.getDetectValue() : "";
-        final String outFormat = outArchitecture.isEmpty() ? "%s%s" : "%s-%s";
+        final var outOs = os == Os.OSX ? "macosx" : os.getDetectValue();
+        final var outArchitecture = os == Os.LINUX ? architecture.getDetectValue() : "";
+        final var outFormat = outArchitecture.isEmpty() ? "%s%s" : "%s-%s";
 
         return String.format(outFormat, outOs, outArchitecture);
     }

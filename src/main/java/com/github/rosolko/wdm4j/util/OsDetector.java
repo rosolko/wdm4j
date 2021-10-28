@@ -2,7 +2,6 @@ package com.github.rosolko.wdm4j.util;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Properties;
 
 import kr.motd.maven.os.Detector;
@@ -23,9 +22,9 @@ public final class OsDetector extends Detector {
     private final Properties detectedProperties = new Properties();
 
     private OsDetector() {
-        final List<String> keys = Arrays.asList("os.name", "os.arch", "os.version");
+        final var keys = Arrays.asList("os.name", "os.arch", "os.version");
         keys.forEach(key -> {
-            final String value = System.getProperty(key);
+            final var value = System.getProperty(key);
             detectedProperties.put(key, value);
         });
         detect(detectedProperties, Collections.emptyList());

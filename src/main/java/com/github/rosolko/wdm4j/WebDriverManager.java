@@ -1,6 +1,5 @@
 package com.github.rosolko.wdm4j;
 
-import java.net.URL;
 import java.nio.file.Path;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -13,7 +12,6 @@ import com.github.rosolko.wdm4j.config.impl.LegacyEdgeConfig;
 import com.github.rosolko.wdm4j.config.impl.OperaConfig;
 import com.github.rosolko.wdm4j.config.impl.PhantomJsConfig;
 import com.github.rosolko.wdm4j.enums.Architecture;
-import com.github.rosolko.wdm4j.enums.Extension;
 import com.github.rosolko.wdm4j.enums.Os;
 import com.github.rosolko.wdm4j.service.ArchiveService;
 import com.github.rosolko.wdm4j.service.FileService;
@@ -104,22 +102,22 @@ public final class WebDriverManager {
     }
 
     private void setup(final CommonConfig config, final String version, final Os os, final Architecture architecture) {
-        final String pattern = config.getUrlPattern();
-        final String platform = config.getPlatform(os, architecture);
-        final Extension extension = config.getArchiveExtension(os);
-        final String binaryName = config.getBinaryNameWithExtension(os);
-        final String binaryVariable = config.getBinaryVariable();
-        final Path binaryPath = fileService.getBinaryPath(config.getBrowserName(), version, platform, binaryName);
+        final var pattern = config.getUrlPattern();
+        final var platform = config.getPlatform(os, architecture);
+        final var extension = config.getArchiveExtension(os);
+        final var binaryName = config.getBinaryNameWithExtension(os);
+        final var binaryVariable = config.getBinaryVariable();
+        final var binaryPath = fileService.getBinaryPath(config.getBrowserName(), version, platform, binaryName);
 
         while (true) {
             if (!queue.contains(binaryPath)) {
                 queue.add(binaryPath);
                 Path unarchivedBinaryPath;
                 if (!binaryPath.toFile().exists()) {
-                    final URL url = urlService.buildUrl(pattern, version, platform, extension);
-                    final String archiveName = urlService.getFileNameFromUrl(url);
-                    final Path archiveTempPath = fileService.getArchiveTempPath(archiveName);
-                    final Path downloadedArchive = archiveService.download(url, archiveTempPath);
+                    final var url = urlService.buildUrl(pattern, version, platform, extension);
+                    final var archiveName = urlService.getFileNameFromUrl(url);
+                    final var archiveTempPath = fileService.getArchiveTempPath(archiveName);
+                    final var downloadedArchive = archiveService.download(url, archiveTempPath);
                     unarchivedBinaryPath = archiveService.extract(downloadedArchive, binaryName, binaryPath, extension);
                     archiveService.remove(downloadedArchive);
                 } else {

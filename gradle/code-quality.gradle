@@ -1,5 +1,5 @@
 checkstyle {
-    toolVersion = "8.41"
+    toolVersion = "9.0.1"
 }
 
 tasks.withType(Checkstyle) {
@@ -10,7 +10,7 @@ tasks.withType(Checkstyle) {
 }
 
 pmd {
-    toolVersion = "6.32.0"
+    toolVersion = "6.39.0"
     incrementalAnalysis = true
 }
 
@@ -24,7 +24,7 @@ tasks.withType(Pmd) {
 }
 
 jacoco {
-    toolVersion = "0.8.6"
+    toolVersion = "0.8.7"
 }
 
 tasks.withType(JacocoReport) {

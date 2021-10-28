@@ -73,7 +73,7 @@ public interface CommonConfig {
      * @see Os
      * @see Architecture
      */
-    default String getPlatform(Os os, Architecture architecture) {
+    default String getPlatform(final Os os, final Architecture architecture) {
         requireNonNull(os);
         requireNonNull(architecture);
 
@@ -90,7 +90,7 @@ public interface CommonConfig {
      * @see Os
      * @see Extension
      */
-    default Extension getArchiveExtension(Os os) {
+    default Extension getArchiveExtension(final Os os) {
         requireNonNull(os);
 
         return Extension.ZIP;

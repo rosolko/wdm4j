@@ -2,7 +2,6 @@ package com.github.rosolko.wdm4j.service.impl;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import com.github.rosolko.wdm4j.enums.Extension;
@@ -28,7 +27,7 @@ public class DefaultUrlService implements UrlService {
         requireNonNull(platform);
         requireNonNull(extension);
 
-        final String candidate = pattern
+        final var candidate = pattern
             .replaceAll("(?i)(\\{version})", version)
             .replaceAll("(?i)(\\{platform})", platform)
             .replaceAll("(?i)(\\{extension})", extension.getValue());
@@ -47,7 +46,7 @@ public class DefaultUrlService implements UrlService {
     public String getFileNameFromUrl(final URL url) {
         requireNonNull(url);
 
-        final Path path = Paths.get(url.getPath());
+        final var path = Paths.get(url.getPath());
         return path.getFileName().toString();
     }
 }

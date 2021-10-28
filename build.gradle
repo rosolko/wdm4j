@@ -8,7 +8,7 @@ plugins {
     id "pmd"
     id "jacoco"
     id "com.github.ben-manes.versions" version "0.39.0"
-    id "com.github.spotbugs" version "4.7.8"
+    id "com.github.spotbugs" version "5.0.0-beta.5"
     id "org.sonarqube" version "3.3"
     id "com.jfrog.bintray" version "1.8.5"
 }
@@ -22,7 +22,7 @@ apply from: rootProject.file("gradle/publish.gradle")
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(11)
+        languageVersion = JavaLanguageVersion.of(16)
     }
 }
 
@@ -34,8 +34,14 @@ ext {
 tasks.withType(JavaCompile) {
     options.incremental = true
     options.encoding = encoding
-    options.release = 8
     options.compilerArgs += ["-Xlint"]
+
+    options.release = 8
+    sourceCompatibility = 17
+
+    javaCompiler = javaToolchains.compilerFor {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 tasks.withType(Javadoc) {
@@ -49,6 +55,10 @@ tasks.withType(Test) {
     systemProperty("java.enums.logging.manager", "org.apache.logging.log4j.jul.LogManager")
     systemProperty("junit.jupiter.execution.parallel.enabled", "true")
     systemProperty("junit.jupiter.execution.parallel.mode.default", "concurrent")
+
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
 }
 
 tasks.withType(SpotBugsTask) {
@@ -64,6 +74,7 @@ repositories {
 }
 
 dependencies {
+    annotationProcessor('com.github.bsideup.jabel:jabel-javac-plugin:0.4.2')
     api("org.apache.logging.log4j:log4j-api:$log4j2Version")
     implementation("org.jsoup:jsoup:1.14.3")
     implementation("kr.motd.maven:os-maven-plugin:1.7.0")
@@ -77,5 +88,5 @@ dependencies {
 }
 
 wrapper {
-    gradleVersion = "6.8.3"
+    gradleVersion = "7.3-rc-3"
 }

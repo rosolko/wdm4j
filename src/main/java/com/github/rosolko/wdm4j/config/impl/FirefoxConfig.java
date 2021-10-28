@@ -8,8 +8,6 @@ import com.github.rosolko.wdm4j.enums.Extension;
 import com.github.rosolko.wdm4j.enums.Os;
 import com.github.rosolko.wdm4j.exception.WebDriverManagerException;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
 import static java.util.Objects.requireNonNull;
 
@@ -74,9 +72,9 @@ public class FirefoxConfig implements CommonConfig {
     @Override
     public String getLatestVersion() {
         try {
-            final Document document = Jsoup.connect("https://github.com/mozilla/geckodriver/releases").get();
-            final Element element = document.selectFirst(".release-header .f1 a");
-            return element.text().replace("v", "");
+            final var document = Jsoup.connect("https://github.com/mozilla/geckodriver/releases").get();
+            final var element = document.selectFirst("[class='Link--primary']");
+            return requireNonNull(element).text().replace("v", "");
         } catch (final IOException e) {
             throw new WebDriverManagerException("Unable to get latest firefox webdriver binary version", e);
         }

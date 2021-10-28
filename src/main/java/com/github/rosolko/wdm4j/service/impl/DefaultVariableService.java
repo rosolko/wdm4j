@@ -22,8 +22,8 @@ public class DefaultVariableService implements VariableService {
         requireNonNull(binaryProperty);
         requireNonNull(binaryPath);
 
-        final String stringBinaryPath = binaryPath.toString();
-        final String systemPropertyBinaryPath = System.getProperty(binaryProperty);
+        final var stringBinaryPath = binaryPath.toString();
+        final var systemPropertyBinaryPath = System.getProperty(binaryProperty);
 
         if (!isNull(systemPropertyBinaryPath) && systemPropertyBinaryPath.equals(stringBinaryPath)) {
             return;

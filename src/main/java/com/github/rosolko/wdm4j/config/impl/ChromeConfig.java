@@ -7,7 +7,6 @@ import com.github.rosolko.wdm4j.enums.Architecture;
 import com.github.rosolko.wdm4j.enums.Os;
 import com.github.rosolko.wdm4j.exception.WebDriverManagerException;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 import static java.util.Objects.requireNonNull;
 
@@ -65,7 +64,7 @@ public class ChromeConfig implements CommonConfig {
         requireNonNull(os);
         requireNonNull(architecture);
 
-        final Architecture outArchitecture = os == Os.WINDOWS
+        final var outArchitecture = os == Os.WINDOWS
             ? Architecture.X_86_32
             : Architecture.X_86_64;
         return String.format("%s%s", os.getValue(), outArchitecture.getValue());
@@ -77,7 +76,7 @@ public class ChromeConfig implements CommonConfig {
     @Override
     public String getLatestVersion() {
         try {
-            final Document document = Jsoup.connect("https://chromedriver.storage.googleapis.com/LATEST_RELEASE").get();
+            final var document = Jsoup.connect("https://chromedriver.storage.googleapis.com/LATEST_RELEASE").get();
             return document.body().text();
         } catch (final IOException e) {
             throw new WebDriverManagerException("Unable to get latest chrome webdriver binary version", e);

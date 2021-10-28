@@ -7,7 +7,6 @@ import com.github.rosolko.wdm4j.enums.Architecture;
 import com.github.rosolko.wdm4j.enums.Os;
 import com.github.rosolko.wdm4j.exception.WebDriverManagerException;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 import static java.util.Objects.requireNonNull;
 
@@ -56,7 +55,7 @@ public class EdgeConfig implements CommonConfig {
     @Override
     public String getLatestVersion() {
         try {
-            final Document document = Jsoup.connect("https://msedgedriver.azureedge.net/LATEST_BETA").ignoreContentType(true).get();
+            final var document = Jsoup.connect("https://msedgedriver.azureedge.net/LATEST_BETA").ignoreContentType(true).get();
             return document.body().text();
         } catch (final IOException e) {
             throw new WebDriverManagerException("Unable to get latest edge webdriver binary version", e);
@@ -71,6 +70,7 @@ public class EdgeConfig implements CommonConfig {
      * <br>
      * For mac/linux - {@link Architecture#X_86_64}
      */
+    @SuppressWarnings("PMD.SwitchStmtsShouldHaveDefault")
     @Override
     public String getPlatform(final Os os, final Architecture architecture) {
         requireNonNull(os);
@@ -79,17 +79,15 @@ public class EdgeConfig implements CommonConfig {
         Os outOs;
         Architecture outArchitecture;
         switch (os) {
-            case WINDOWS:
+            case WINDOWS -> {
                 outOs = Os.WINDOWS;
                 outArchitecture = architecture;
-                break;
-            case LINUX:
-            case OSX:
+            }
+            case LINUX, OSX -> {
                 outOs = Os.OSX;
                 outArchitecture = Architecture.X_86_64;
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + os);
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + os);
         }
         return String.format("%s%s", outOs.getValue(), outArchitecture.getValue());
     }

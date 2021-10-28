@@ -11,7 +11,6 @@ import java.nio.file.StandardCopyOption;
 import com.github.rosolko.wdm4j.enums.Extension;
 import com.github.rosolko.wdm4j.exception.WebDriverManagerException;
 import com.github.rosolko.wdm4j.service.ArchiveService;
-import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.ArchiveInputStream;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.apache.commons.compress.archivers.zip.ZipArchiveInputStream;
@@ -40,7 +39,7 @@ public class DefaultArchiveService implements ArchiveService {
             return archivePath;
         }
 
-        try (InputStream inputStream = url.openStream()) {
+        try (var inputStream = url.openStream()) {
             Files.copy(inputStream, archivePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (final IOException e) {
             throw new WebDriverManagerException("Unable to download archive from url", e);
@@ -63,18 +62,12 @@ public class DefaultArchiveService implements ArchiveService {
             return binaryPath;
         }
 
-        switch (extension) {
-            case EXE:
-                return extractFromExe(archivePath, binaryPath);
-            case ZIP:
-                return extractFromZip(archivePath, binaryName, binaryPath);
-            case TAR_GZ:
-                return extractFromTarGz(archivePath, binaryName, binaryPath);
-            case TAR_BZ2:
-                return extractFromTarBz(archivePath, binaryName, binaryPath);
-            default:
-                throw new WebDriverManagerException(String.format("Unknown archive type: %s", extension.getValue()));
-        }
+        return switch (extension) {
+            case EXE -> extractFromExe(archivePath, binaryPath);
+            case ZIP -> extractFromZip(archivePath, binaryName, binaryPath);
+            case TAR_GZ -> extractFromTarGz(archivePath, binaryName, binaryPath);
+            case TAR_BZ2 -> extractFromTarBz(archivePath, binaryName, binaryPath);
+        };
     }
 
     /**
@@ -111,7 +104,7 @@ public class DefaultArchiveService implements ArchiveService {
         requireNonNull(binaryName);
         requireNonNull(binaryPath);
 
-        try (InputStream inputStream = Files.newInputStream(archivePath);
+        try (var inputStream = Files.newInputStream(archivePath);
              InputStream gzipCompressorInputStream = new GzipCompressorInputStream(inputStream);
              ArchiveInputStream tarArchiveInputStream = new TarArchiveInputStream(gzipCompressorInputStream)) {
             extractEntry(binaryName, binaryPath, tarArchiveInputStream);
@@ -126,7 +119,7 @@ public class DefaultArchiveService implements ArchiveService {
         requireNonNull(binaryName);
         requireNonNull(binaryPath);
 
-        try (InputStream inputStream = Files.newInputStream(archivePath);
+        try (var inputStream = Files.newInputStream(archivePath);
              InputStream bZip2CompressorInputStream = new BZip2CompressorInputStream(inputStream);
              ArchiveInputStream tarArchiveInputStream = new TarArchiveInputStream(bZip2CompressorInputStream)) {
             extractEntry(binaryName, binaryPath, tarArchiveInputStream);
@@ -142,9 +135,9 @@ public class DefaultArchiveService implements ArchiveService {
         requireNonNull(binaryPath);
         requireNonNull(archiveInputStream);
 
-        ArchiveEntry entry = archiveInputStream.getNextEntry();
+        var entry = archiveInputStream.getNextEntry();
         while (nonNull(entry)) {
-            final String entryName = Paths.get(entry.getName()).getFileName().toString();
+            final var entryName = Paths.get(entry.getName()).getFileName().toString();
             if (entryName.equals(binaryName) && !entry.isDirectory()) {
                 Files.copy(archiveInputStream, binaryPath, StandardCopyOption.REPLACE_EXISTING);
             }
@@ -157,7 +150,7 @@ public class DefaultArchiveService implements ArchiveService {
         requireNonNull(binaryName);
         requireNonNull(binaryPath);
 
-        try (InputStream inputStream = Files.newInputStream(archivePath);
+        try (var inputStream = Files.newInputStream(archivePath);
              ArchiveInputStream zipArchiveInputStream = new ZipArchiveInputStream(inputStream)) {
             extractEntry(binaryName, binaryPath, zipArchiveInputStream);
         } catch (final IOException e) {

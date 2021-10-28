@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.PosixFilePermission;
-import java.util.Set;
 
 import com.github.rosolko.wdm4j.enums.Extension;
 import com.github.rosolko.wdm4j.enums.Os;
@@ -37,7 +36,7 @@ public class DefaultPermissionService implements PermissionService {
         }
 
         try {
-            final Set<PosixFilePermission> permissions = Files.getPosixFilePermissions(binaryPath);
+            final var permissions = Files.getPosixFilePermissions(binaryPath);
             permissions.add(PosixFilePermission.OWNER_EXECUTE);
             Files.setPosixFilePermissions(binaryPath, permissions);
         } catch (final IOException e) {

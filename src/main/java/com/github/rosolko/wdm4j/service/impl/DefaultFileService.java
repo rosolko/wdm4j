@@ -24,7 +24,7 @@ public class DefaultFileService implements FileService {
     public Path getArchiveTempPath(final String archiveName) {
         requireNonNull(archiveName);
 
-        final String tmpdir = System.getProperty("java.io.tmpdir");
+        final var tmpdir = System.getProperty("java.io.tmpdir");
         return Paths.get(tmpdir, archiveName);
     }
 
@@ -39,9 +39,9 @@ public class DefaultFileService implements FileService {
         requireNonNull(platform);
         requireNonNull(binaryName);
 
-        final String userDirectory = System.getProperty("user.dir");
-        final String prefix = Paths.get("build", "binaries").toString();
-        final Path binaryPath = Paths.get(userDirectory, prefix, browserName, binaryVersion, platform, binaryName);
+        final var userDirectory = System.getProperty("user.dir");
+        final var prefix = Paths.get("build", "binaries").toString();
+        final var binaryPath = Paths.get(userDirectory, prefix, browserName, binaryVersion, platform, binaryName);
         createTargetDirectory(binaryPath);
         return binaryPath;
     }
@@ -49,7 +49,7 @@ public class DefaultFileService implements FileService {
     private void createTargetDirectory(final Path binaryPath) {
         requireNonNull(binaryPath);
 
-        final Path directory = binaryPath.getParent();
+        final var directory = binaryPath.getParent();
 
         if (directory.toFile().exists()) {
             return;
