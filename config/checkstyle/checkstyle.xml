@@ -94,9 +94,7 @@
 
         <!-- Javadoc Comments -->
         <module name="AtclauseOrder"/>
-        <module name="JavadocMethod">
-            <property name="scope" value="public"/>
-        </module>
+        <module name="JavadocMethod"/>
         <module name="JavadocParagraph"/>
         <module name="JavadocStyle">
             <property name="scope" value="public"/>
