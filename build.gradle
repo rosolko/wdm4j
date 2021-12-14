@@ -28,7 +28,7 @@ java {
 
 ext {
     encoding = StandardCharsets.UTF_8.toString()
-    log4j2Version = "2.14.1"
+    log4j2Version = "2.16.0"
 }
 
 tasks.withType(JavaCompile) {
