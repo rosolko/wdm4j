@@ -79,7 +79,7 @@ dependencies {
     implementation("org.jsoup:jsoup:1.14.3")
     implementation("kr.motd.maven:os-maven-plugin:1.7.0")
     implementation("org.apache.commons:commons-compress:1.21")
-    testImplementation("org.assertj:assertj-core:3.21.0")
+    testImplementation("org.assertj:assertj-core:3.22.0")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
     testRuntimeOnly("org.apache.logging.log4j:log4j-core:$log4j2Version")
     testRuntimeOnly("org.apache.logging.log4j:log4j-jul:$log4j2Version")
